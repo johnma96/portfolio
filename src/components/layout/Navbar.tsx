@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { GradientText } from '../ui/GradientText'
 
 const navLinks = [
@@ -8,10 +9,18 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const id = href.replace('#', '')
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+
+    if (location.pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/', { state: { scrollTo: id } })
+    }
   }
 
   return (
