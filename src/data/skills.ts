@@ -12,31 +12,31 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     label: 'ML / AI',
     skills: [
-      { name: 'Scikit-learn', level: 92 },
-      { name: 'XGBoost / LightGBM', level: 88 },
-      { name: 'PyTorch', level: 70 },
-      { name: 'LLMs / LangChain', level: 78 },
-      { name: 'Optuna', level: 75 },
+      { name: 'Python', level: 95 },
+      { name: 'Scikit-learn / XGBoost', level: 88 },
+      { name: 'LLMs / LangChain / Agents', level: 87 },
+      { name: 'RAG / Vector DBs', level: 82 },
+      { name: 'PyTorch', level: 72 },
     ],
   },
   {
     label: 'MLOps',
     skills: [
-      { name: 'Vertex AI', level: 82 },
       { name: 'Apache Airflow', level: 85 },
+      { name: 'MLflow / DVC', level: 83 },
+      { name: 'Databricks / PySpark', level: 80 },
       { name: 'Docker / Kubernetes', level: 75 },
-      { name: 'MLflow / DVC', level: 72 },
-      { name: 'GitLab CI/CD', level: 78 },
+      { name: 'CI/CD (GitLab · Jenkins)', level: 73 },
     ],
   },
   {
     label: 'Data & Cloud',
     skills: [
-      { name: 'BigQuery', level: 90 },
-      { name: 'GCP', level: 80 },
-      { name: 'Python', level: 95 },
       { name: 'SQL', level: 90 },
-      { name: 'Spark / dbt', level: 65 },
+      { name: 'GCP / BigQuery', level: 88 },
+      { name: 'Vertex AI', level: 80 },
+      { name: 'Power BI', level: 75 },
+      { name: 'AWS', level: 68 },
     ],
   },
 ]

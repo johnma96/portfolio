@@ -2,8 +2,11 @@ import { motion } from 'framer-motion'
 import { BlogCard } from '../components/ui/BlogCard'
 import { POSTS_META } from '../data/posts-meta'
 import { fadeInUp, staggerContainer } from '../lib/motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export function Blog() {
+  const { t } = useLanguage()
+
   return (
     <main className="pt-28 pb-20">
       <motion.div
@@ -13,16 +16,16 @@ export function Blog() {
         animate="visible"
       >
         <motion.p variants={fadeInUp} className="text-accent-purple font-mono text-sm mb-3">
-          // Blog
+          {t.blog.label}
         </motion.p>
         <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-text-primary mb-2">
-          Artículos técnicos
+          {t.blog.heading}
         </motion.h1>
         <motion.p variants={fadeInUp} className="text-text-secondary mb-2">
-          Escribo sobre MLOps, sistemas de producción y el camino de DS a AI Engineer.
+          {t.blog.subtitle}
         </motion.p>
         <motion.p variants={fadeInUp} className="text-text-muted text-sm mb-12">
-          {POSTS_META.length} artículos publicados
+          {POSTS_META.length} {t.blog.articlesPublished}
         </motion.p>
 
         <motion.div variants={staggerContainer} className="flex flex-col gap-6">

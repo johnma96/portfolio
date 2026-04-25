@@ -1,0 +1,79 @@
+import type { Translations } from './types'
+
+export const en: Translations = {
+  nav: {
+    projects: 'Projects',
+    skills: 'Skills',
+    certifications: 'Certifications',
+    blog: 'Blog',
+    cta: "Let's work together →",
+  },
+  hero: {
+    badge: 'Available for freelance projects',
+    subtitle: 'ML & Generative AI systems specialist · Medellín, Colombia',
+    description:
+      'I build production-ready ML systems and Generative AI solutions: from data pipelines to RAG-powered agents. Specialized in GCP, AWS, Vertex AI and LLMs applied to real business problems.',
+    viewProjects: 'View projects →',
+    downloadCV: 'Download CV',
+    stats: [
+      { value: '5+', label: 'Years of experience' },
+      { value: '10+', label: 'Projects in production' },
+      { value: '3', label: 'Cloud platforms' },
+    ],
+  },
+  projects: {
+    label: '// Portfolio',
+    heading: 'Featured projects',
+    openSourceLabel: '// Open Source',
+    openSourceHeading: 'Public GitHub repos',
+    errorMsg: 'Could not load repositories.',
+    viewOnGitHub: 'View on GitHub →',
+    viewAllGitHub: 'View all on GitHub →',
+    noDescription: 'No description',
+  },
+  skills: {
+    label: '// Tech stack',
+    heading: 'Tech stack',
+    subtitle: 'Technologies I use to build ML systems in production.',
+  },
+  blog: {
+    label: '// Blog',
+    heading: 'Technical articles',
+    subtitle: 'I write about MLOps, production systems and the journey from DS to AI Engineer.',
+    viewAll: 'View all posts →',
+    readMore: 'Read more →',
+    articlesPublished: 'articles published',
+    locale: 'en-US',
+  },
+  contact: {
+    label: '// Contact',
+    headingPre: 'Do you have a ',
+    headingGradient: 'project in mind',
+    subtitle:
+      "I'm available for freelance projects in MLOps, data pipelines and LLM systems in production.",
+    namePlaceholder: 'Your name',
+    emailPlaceholder: 'Your email',
+    messagePlaceholder: 'Tell me about your project...',
+    nameRequired: 'Name is required',
+    emailRequired: 'Email is required',
+    emailInvalid: 'Invalid email',
+    messageRequired: 'Message is required',
+    messageMinLength: 'Minimum 20 characters',
+    sendButton: 'Send message →',
+    sending: 'Sending...',
+    successTitle: 'Message sent!',
+    successBody: "I'll get back to you within 24 hours.",
+    findMeOn: 'Or find me on:',
+    sendError: 'There was an error sending. Email me directly at ',
+  },
+  certifications: {
+    label: '// Certifications',
+    heading: 'Certifications',
+    subtitle: 'Continuous learning in Generative AI, MLOps and Cloud.',
+    viewCredential: 'View credential →',
+    viewCertificate: 'View certificate →',
+  },
+  footer: {
+    madeWith: 'Built with React + Vite.',
+  },
+}

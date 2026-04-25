@@ -1,0 +1,79 @@
+import type { Translations } from './types'
+
+export const es: Translations = {
+  nav: {
+    projects: 'Proyectos',
+    skills: 'Skills',
+    certifications: 'Certificaciones',
+    blog: 'Blog',
+    cta: 'Trabajemos juntos →',
+  },
+  hero: {
+    badge: 'Disponible para proyectos freelance',
+    subtitle: 'Especialista en sistemas ML e IA Generativa · Medellín, Colombia',
+    description:
+      'Construyo sistemas ML y soluciones de IA Generativa production-ready: desde pipelines de datos hasta agentes con RAG. Especializado en GCP, AWS, Vertex AI y LLMs aplicados a problemas reales de negocio.',
+    viewProjects: 'Ver proyectos →',
+    downloadCV: 'Descargar CV',
+    stats: [
+      { value: '5+', label: 'Años de experiencia' },
+      { value: '10+', label: 'Proyectos en producción' },
+      { value: '3', label: 'Plataformas cloud' },
+    ],
+  },
+  projects: {
+    label: '// Portfolio',
+    heading: 'Proyectos destacados',
+    openSourceLabel: '// Open Source',
+    openSourceHeading: 'Repos públicos en GitHub',
+    errorMsg: 'No se pudieron cargar los repositorios.',
+    viewOnGitHub: 'Ver en GitHub →',
+    viewAllGitHub: 'Ver todos en GitHub →',
+    noDescription: 'Sin descripción',
+  },
+  skills: {
+    label: '// Stack técnico',
+    heading: 'Stack técnico',
+    subtitle: 'Tecnologías con las que construyo sistemas ML en producción.',
+  },
+  blog: {
+    label: '// Blog',
+    heading: 'Artículos técnicos',
+    subtitle: 'Escribo sobre MLOps, sistemas de producción y el camino de DS a AI Engineer.',
+    viewAll: 'Ver todos los posts →',
+    readMore: 'Leer más →',
+    articlesPublished: 'artículos publicados',
+    locale: 'es-ES',
+  },
+  contact: {
+    label: '// Contacto',
+    headingPre: '¿Tienes un ',
+    headingGradient: 'proyecto en mente',
+    subtitle:
+      'Estoy disponible para proyectos freelance de MLOps, pipelines de datos y sistemas LLM en producción.',
+    namePlaceholder: 'Tu nombre',
+    emailPlaceholder: 'Tu email',
+    messagePlaceholder: 'Cuéntame sobre tu proyecto...',
+    nameRequired: 'El nombre es obligatorio',
+    emailRequired: 'El email es obligatorio',
+    emailInvalid: 'Email inválido',
+    messageRequired: 'El mensaje es obligatorio',
+    messageMinLength: 'Mínimo 20 caracteres',
+    sendButton: 'Enviar mensaje →',
+    sending: 'Enviando...',
+    successTitle: '¡Mensaje enviado!',
+    successBody: 'Te responderé en menos de 24 horas.',
+    findMeOn: 'O encuéntrame en:',
+    sendError: 'Hubo un error al enviar. Escríbeme directamente a ',
+  },
+  certifications: {
+    label: '// Certificaciones',
+    heading: 'Certificaciones',
+    subtitle: 'Formación continua en IA Generativa, MLOps y Cloud.',
+    viewCredential: 'Ver credencial →',
+    viewCertificate: 'Ver certificado →',
+  },
+  footer: {
+    madeWith: 'Hecho con React + Vite.',
+  },
+}
