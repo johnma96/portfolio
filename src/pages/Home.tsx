@@ -1,7 +1,17 @@
+import { Hero } from '../components/sections/Hero'
+import { Projects } from '../components/sections/Projects'
+import { Skills } from '../components/sections/Skills'
+import { BlogPreview } from '../components/sections/BlogPreview'
+import { Contact } from '../components/sections/Contact'
+
 export function Home() {
   return (
     <main>
-      {/* Sections will be imported here once built */}
+      <Hero />
+      <Projects />
+      <Skills />
+      <BlogPreview />
+      <Contact />
     </main>
   )
 }
