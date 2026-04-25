@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
     maxReposDisplayed: 6,
   },
   contact: {
-    linkedin: 'https://linkedin.com/in/jmariomontoya',
+    linkedin: 'https://www.linkedin.com/in/john-m-montoya-z-1a375a15b/',
     twitter: '',
     email: 'jmmontoyaz13@gmail.com',
   },
