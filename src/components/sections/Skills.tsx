@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/motion'
-import { SKILL_GROUPS, type SkillGroup } from '@/data/skills'
-import SkillBar from '@/components/ui/SkillBar'
+import { fadeInUp, staggerContainer } from '../../lib/motion'
+import { SKILL_GROUPS, type SkillGroup } from '../../data/skills'
+import SkillBar from '../ui/SkillBar'
 
-export default function Skills() {
+export function Skills() {
   return (
     <motion.section
       id="skills"

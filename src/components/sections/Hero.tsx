@@ -10,7 +10,7 @@ const stats = [
   { value: '5+', label: 'Tecnologías cloud' },
 ]
 
-export default function Hero() {
+export function Hero() {
   return (
     <section
       id="hero"
