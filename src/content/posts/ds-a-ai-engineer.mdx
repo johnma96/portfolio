@@ -1,0 +1,109 @@
+---
+title: "De Data Scientist a AI Engineer: qué cambió en mi forma de trabajar"
+date: "2025-01-10"
+excerpt: "El salto no es solo de título. Hablar de APIs, latencia, costos por token, RAG y evaluación de LLMs cambia completamente el mindset."
+tags: ["Career", "LLMs", "AI Engineering"]
+readTime: "8 min"
+---
+
+Pasé tres años trabajando como Data Scientist: modelos en Jupyter, métricas de validación, feature engineering, experimentos. El trabajo era bueno y aprendí mucho. Pero a medida que los LLMs se volvían herramientas reales de producción, noté que el rol que me pedían tener era diferente al que sabía hacer.
+
+Esta es mi experiencia del cambio. No es una guía exhaustiva sino lo que noté que cambió de verdad.
+
+## El primer cambio: de batch a real-time
+
+Como Data Scientist, casi todo el trabajo era offline. Entrenas un modelo, lo evalúas, lo desplegás en un endpoint y alguien lo llama. El modelo responde en milisegundos o segundos, no importa mucho. Los resultados se acumulan en tablas. Se revisan al día siguiente.
+
+Con LLMs, el usuario está esperando la respuesta ahora mismo. Latencia de 8 segundos es inaceptable en un chat. La primera vez que vi una solicitud de "reducir la latencia de P99 de 12s a bajo 4s" entendí que estaba en territorio nuevo.
+
+Empecé a pensar en cosas que antes ignoraba: streaming de tokens (mostrar la respuesta mientras se genera), caché de respuestas frecuentes, tamaño del contexto vs velocidad, qué modelo usar según el caso de uso.
+
+## Las métricas cambian completamente
+
+En ML clásico vivía mirando accuracy, F1, AUC-ROC. En AI Engineering el tablero es otro:
+
+- **Latencia** (P50, P95, P99): el percentil 99 importa más que el promedio
+- **Costo por request**: con APIs de LLMs, cada llamada tiene precio. Un prompt mal diseñado que usa 10x más tokens es un problema de negocio real
+- **Tokens por segundo**: throughput del modelo, especialmente con modelos self-hosted
+- **Cache hit rate**: si tenés prompt caching configurado, cuánto estás ahorrando
+- **Error rate por tipo**: rate limits, context length exceeded, safety filters
+
+La primera vez que optimicé un sistema para costo en vez de accuracy fue un cambio de perspectiva importante.
+
+## RAG: la arquitectura que más usé
+
+Retrieval-Augmented Generation se convirtió en la arquitectura estándar para la mayoría de los casos que encaré. La idea es simple: en vez de pedirle al modelo que "recuerde" información (que no puede actualizar después del training), buscás la información relevante en el momento y la inyectás en el prompt.
+
+```python
+from anthropic import Anthropic
+
+client = Anthropic()
+
+def answer_with_rag(question: str, retriever) -> str:
+    # 1. Buscar contexto relevante
+    docs = retriever.search(question, top_k=5)
+    context = "\n\n".join(doc.content for doc in docs)
+
+    # 2. Construir prompt con contexto
+    response = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=1024,
+        system="Respondé usando solo la información del contexto provisto. Si no está en el contexto, decilo.",
+        messages=[{
+            "role": "user",
+            "content": f"Contexto:\n{context}\n\nPregunta: {question}"
+        }]
+    )
+
+    return response.content[0].text
+```
+
+Lo que parece simple tiene muchas variables que afectan la calidad: el chunking de documentos, el modelo de embeddings, la estrategia de reranking, el tamaño del contexto que inyectás. Cada uno de esos es un experimento.
+
+## Evaluar LLMs en producción
+
+Este fue el cambio más difícil. En ML clásico tenés un test set, corrés el modelo, calculás métricas. Con LLMs la evaluación es más complicada porque las respuestas son texto libre.
+
+Las tres estrategias que usé:
+
+**1. LLM-as-judge:** usás otro LLM (o el mismo) para evaluar la calidad de las respuestas.
+
+```python
+def evaluate_response(question: str, response: str, reference: str) -> dict:
+    eval_prompt = f"""
+    Pregunta: {question}
+    Respuesta del sistema: {response}
+    Respuesta de referencia: {reference}
+
+    Evaluá en escala 1-5:
+    - Precisión factual
+    - Relevancia
+    - Completitud
+
+    Respondé en JSON: {{"precision": N, "relevancia": N, "completitud": N, "razon": "..."}}
+    """
+    # ... llamada al modelo evaluador
+```
+
+**2. Evals humanos con muestreo:** revisar manualmente un porcentaje de las respuestas en producción. Costoso pero necesario para calibrar los evals automáticos.
+
+**3. Métricas de comportamiento:** si el usuario reformuló la pregunta (señal de respuesta insatisfactoria), tiempo de sesión, tasa de thumbs down.
+
+## Herramientas que aparecieron en mi stack
+
+- **LangChain / LlamaIndex**: para RAG y cadenas de procesamiento. Útiles para prototipar, pero a veces añaden abstracción innecesaria en producción.
+- **Weights & Biases / MLflow**: siguen siendo relevantes para trackear experimentos de prompts y evals.
+- **Anthropic SDK / OpenAI SDK**: directos, sin frameworks, para producción donde necesitás control total.
+- **pgvector / Qdrant**: bases de datos vectoriales para el retrieval de RAG.
+
+## Qué recomendaría a alguien que quiere hacer el salto
+
+**Empezá con la API directa.** Antes de usar LangChain, entendé qué está pasando: cómo funciona un message array, qué es el system prompt, cómo contar tokens, cómo funciona el streaming. Todo lo demás es abstracción sobre eso.
+
+**Construí un proyecto con RAG de punta a punta.** No el tutorial de 15 líneas. Un sistema real con documentos tuyos, donde tengas que decidir el chunking, el modelo de embeddings, la estrategia de búsqueda y cómo medir si funciona.
+
+**Aprendé a medir costos.** Calculá el costo de tu sistema por 1000 usuarios. Si no lo sabés, no estás listo para producción.
+
+**El mindset de ingeniería importa más que saber todos los modelos.** Los modelos cambian cada tres meses. Saber diseñar sistemas, medir latencia, manejar errores y degradar gracefully — eso no caduca.
+
+El salto valió la pena. Trabajo en problemas más cercanos a los usuarios y con impacto más inmediato. Pero fue un salto real, no solo un cambio de título.

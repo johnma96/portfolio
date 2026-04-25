@@ -1,7 +1,38 @@
+import { motion } from 'framer-motion'
+import { BlogCard } from '../components/ui/BlogCard'
+import { POSTS_META } from '../data/posts-meta'
+import { fadeInUp, staggerContainer } from '../lib/motion'
+
 export function Blog() {
   return (
-    <main className="pt-24 pb-20 max-w-4xl mx-auto px-6">
-      <h1 className="text-3xl font-bold text-text-primary">Blog</h1>
+    <main className="pt-28 pb-20">
+      <motion.div
+        className="max-w-4xl mx-auto px-6"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.p variants={fadeInUp} className="text-accent-purple font-mono text-sm mb-3">
+          // Blog
+        </motion.p>
+        <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-text-primary mb-2">
+          Artículos técnicos
+        </motion.h1>
+        <motion.p variants={fadeInUp} className="text-text-secondary mb-2">
+          Escribo sobre MLOps, sistemas de producción y el camino de DS a AI Engineer.
+        </motion.p>
+        <motion.p variants={fadeInUp} className="text-text-muted text-sm mb-12">
+          {POSTS_META.length} artículos publicados
+        </motion.p>
+
+        <motion.div variants={staggerContainer} className="flex flex-col gap-6">
+          {POSTS_META.map((post) => (
+            <motion.div key={post.slug} variants={fadeInUp}>
+              <BlogCard post={post} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
     </main>
   )
 }

@@ -1,0 +1,105 @@
+---
+title: "Airflow en GKE: lecciones de un año en producción"
+date: "2025-03-15"
+excerpt: "Cómo pasamos de un Airflow local inestable a un cluster GKE resiliente. Configuración, errores cometidos y las optimizaciones que realmente importaron."
+tags: ["Airflow", "GKE", "Kubernetes", "MLOps"]
+readTime: "10 min"
+---
+
+Llevamos poco más de un año corriendo Apache Airflow en Google Kubernetes Engine y hubo un punto de inflexión claro: el día que el pod del scheduler se cayó durante una ventana de carga crítica y no teníamos forma rápida de levantarlo. Ese día decidimos invertir en hacerlo bien.
+
+## Por qué GKE y no Cloud Composer
+
+Cloud Composer es la opción gestionada de Google. Es cómoda, pero tiene dos problemas que nos importaban mucho: el costo mensual mínimo es alto para ambientes de desarrollo, y el control sobre la configuración del executor es limitado.
+
+Con GKE tenemos control total sobre el `KubernetesExecutor`, podemos usar node pools preemptibles para tareas batch, y el costo escala a cero cuando no hay DAGs corriendo.
+
+## KubernetesExecutor vs CeleryExecutor
+
+El `CeleryExecutor` requiere un broker (Redis o RabbitMQ) y workers siempre activos. Para cargas predecibles está bien, pero nosotros teníamos picos muy marcados: poco trabajo durante el día, mucho en la noche con los pipelines de datos.
+
+El `KubernetesExecutor` lanza un pod por tarea. No hay workers idle. Cada tarea trae su propio ambiente (podemos usar imágenes Docker distintas por DAG). El scheduler sigue siendo un deployment dedicado, pero los workers desaparecen cuando no hay trabajo.
+
+```yaml
+# airflow.cfg relevante
+[core]
+executor = KubernetesExecutor
+
+[kubernetes]
+namespace = airflow
+worker_container_repository = gcr.io/mi-proyecto/airflow-worker
+worker_container_tag = latest
+delete_worker_pods = True
+delete_worker_pods_on_failure = False  # mantener para debug
+```
+
+## Helm chart y valores críticos
+
+Usamos el chart oficial de Apache Airflow (`apache-airflow/airflow`). Los valores que más nos costaron descubrir:
+
+```yaml
+# values.yaml
+scheduler:
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+
+workers:
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "500m"
+
+# Muy importante: sync de DAGs desde GCS
+dags:
+  persistence:
+    enabled: false
+  gitSync:
+    enabled: false
+  # usamos un init container que baja DAGs desde GCS cada 60s
+```
+
+Para los DAGs usamos un sidecar que sincroniza desde un bucket de GCS cada 60 segundos. Más simple que git-sync para nuestro caso.
+
+## Gestión de secrets con Secret Manager
+
+Nunca ponemos credenciales en variables de entorno del pod ni en la base de datos de Airflow. Usamos Google Secret Manager con el `GoogleCloudSecretManagerBackend`:
+
+```python
+# airflow.cfg
+[secrets]
+backend = airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend
+backend_kwargs = {"project_id": "mi-proyecto", "connections_prefix": "airflow-conn", "variables_prefix": "airflow-var"}
+```
+
+Con esto, `Variable.get("mi_variable")` busca automáticamente en Secret Manager el secret `airflow-var-mi_variable`. Las conexiones también se resuelven igual.
+
+## Errores comunes que cometimos
+
+**OOM en workers.** Teníamos límites de memoria demasiado bajos para tareas que cargaban DataFrames grandes. Solución: medir el pico de uso con `kubectl top pods` durante una corrida real, no durante desarrollo.
+
+**Pod evictions en nodos preemptibles.** Los nodos spot/preemptibles pueden ser reclamados por GCP en cualquier momento. Si una tarea tarda más de 30 minutos, el riesgo es alto. Solución: DAGs con `retries=2` y `retry_delay=timedelta(minutes=5)` en tareas largas, y mover las tareas críticas a un node pool estable (no preemptible).
+
+**Base de datos de metadatos saturada.** Airflow escribe mucho en la base de datos (cada tick del scheduler, cada cambio de estado). Con Cloud SQL postgres `db-f1-micro` empezamos a ver latencia alta. Migramos a `db-g1-small` y habilitamos `clean_xcom_regularly` y `max_active_runs_per_dag`.
+
+## Monitoring con Cloud Monitoring
+
+Creamos un dashboard con estas métricas clave:
+
+- `airflow_dag_run_duration` — duración de cada DAG run
+- `airflow_scheduler_heartbeat` — si deja de latir, el scheduler está caído
+- `airflow_task_instance_state{state="failed"}` — alertar si > 0 en DAGs críticos
+- Uso de CPU/memoria del pod scheduler
+
+La alerta más valiosa: si `airflow_scheduler_heartbeat` no se actualiza en 2 minutos, nos llega un PagerDuty. Antes de eso, podíamos estar horas sin saberlo.
+
+## Lo que haría diferente desde el principio
+
+1. **Empezar con `KubernetesExecutor` desde el día uno.** La migración desde Celery fue costosa.
+2. **Node pool separado para el scheduler.** No puede ser preemptible nunca.
+3. **Logs en GCS desde el inicio.** Los logs en el pod del worker desaparecen cuando el pod muere. `remote_log_conn_id` salvó muchas noches de debug.
+4. **Probar el failover.** Matar el scheduler deliberadamente en staging antes de que pase solo en producción.
