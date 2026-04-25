@@ -2,8 +2,11 @@ import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../ui/SocialIcons'
 import { GradientText } from '../ui/GradientText'
 import { SITE_CONFIG } from '../../data/config'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer
       className="py-12 border-t"
@@ -15,7 +18,7 @@ export function Footer() {
         </p>
 
         <p className="text-xs text-text-muted">
-          © {new Date().getFullYear()} Mario Montoya. Hecho con React + Vite.
+          © {new Date().getFullYear()} Mario Montoya. {t.footer.madeWith}
         </p>
 
         <div className="flex items-center gap-4">

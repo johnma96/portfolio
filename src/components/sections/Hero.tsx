@@ -3,14 +3,11 @@ import { GradientText } from '../ui/GradientText'
 import ParticleBackground from '../ui/ParticleBackground'
 import TechOrbit from '../ui/TechOrbit'
 import { fadeInUp, staggerContainer } from '../../lib/motion'
-
-const stats = [
-  { value: '3+', label: 'Años de experiencia' },
-  { value: '10+', label: 'Proyectos en producción' },
-  { value: '5+', label: 'Tecnologías cloud' },
-]
+import { useLanguage } from '../../contexts/LanguageContext'
 
 export function Hero() {
+  const { lang, t } = useLanguage()
+
   return (
     <section
       id="hero"
@@ -29,9 +26,7 @@ export function Hero() {
           >
             <motion.div variants={fadeInUp} className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent-green animate-pulse" />
-              <span className="text-sm text-text-secondary">
-                Disponible para proyectos freelance
-              </span>
+              <span className="text-sm text-text-secondary">{t.hero.badge}</span>
             </motion.div>
 
             <motion.h1
@@ -43,13 +38,11 @@ export function Hero() {
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-text-secondary text-lg">
-              Especialista en sistemas ML end-to-end · Medellín, Colombia
+              {t.hero.subtitle}
             </motion.p>
 
             <motion.p variants={fadeInUp} className="text-text-muted max-w-lg">
-              Construyo sistemas ML production-ready: desde pipelines de datos hasta APIs de
-              inferencia. Especializado en GCP, Airflow, Vertex AI y LLMs aplicados a problemas
-              reales de negocio.
+              {t.hero.description}
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-row gap-4 flex-wrap">
@@ -62,28 +55,28 @@ export function Hero() {
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                 }}
               >
-                Ver proyectos →
+                {t.hero.viewProjects}
               </motion.button>
 
-              <a href="/cv.pdf" download>
+              <a href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'} download>
                 <motion.span
                   whileHover={{ backgroundColor: 'rgba(167,139,250,0.1)' }}
                   className="inline-flex items-center px-6 py-3 rounded-lg border border-accent-purple/40 text-accent-purple cursor-pointer"
                   style={{ display: 'inline-flex' }}
                 >
-                  Descargar CV
+                  {t.hero.downloadCV}
                 </motion.span>
               </a>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="flex items-center gap-6 pt-4 flex-wrap">
-              {stats.map((stat, i) => (
+              {t.hero.stats.map((stat, i) => (
                 <div key={stat.label} className="flex items-center gap-6">
                   <div className="flex flex-col">
                     <span className="text-2xl font-bold text-text-primary">{stat.value}</span>
                     <span className="text-xs text-text-muted">{stat.label}</span>
                   </div>
-                  {i < stats.length - 1 && (
+                  {i < t.hero.stats.length - 1 && (
                     <div
                       className="w-px h-8"
                       style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}

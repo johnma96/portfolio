@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Badge } from './Badge'
 import type { PostMeta } from '../../data/posts-meta'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 interface BlogCardProps {
   post: PostMeta
 }
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('es-ES', {
+function formatDate(iso: string, locale: string): string {
+  return new Date(iso).toLocaleDateString(locale, {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -16,6 +17,10 @@ function formatDate(iso: string): string {
 }
 
 export function BlogCard({ post }: BlogCardProps) {
+  const { lang, t } = useLanguage()
+  const title = lang === 'en' && post.titleEn ? post.titleEn : post.title
+  const excerpt = lang === 'en' && post.excerptEn ? post.excerptEn : post.excerpt
+
   return (
     <motion.div
       whileHover={{ y: -4 }}
@@ -33,18 +38,15 @@ export function BlogCard({ post }: BlogCardProps) {
       }}
     >
       <Link to={`/blog/${post.slug}`} className="flex flex-col h-full">
-        {/* Header row */}
         <div className="flex items-center justify-between">
-          <span className="text-xs text-text-muted">{formatDate(post.date)}</span>
+          <span className="text-xs text-text-muted">{formatDate(post.date, t.blog.locale)}</span>
           <span className="text-xs text-text-muted">{post.readTime}</span>
         </div>
 
-        {/* Title */}
         <h2 className="text-lg font-semibold text-text-primary mt-3 mb-2 hover:text-accent-blue transition-colors">
-          {post.title}
+          {title}
         </h2>
 
-        {/* Excerpt */}
         <p
           className="text-text-secondary text-sm leading-relaxed flex-1"
           style={{
@@ -54,10 +56,9 @@ export function BlogCard({ post }: BlogCardProps) {
             overflow: 'hidden',
           }}
         >
-          {post.excerpt}
+          {excerpt}
         </p>
 
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-3">
           {post.tags.slice(0, 3).map((tag) => (
             <Badge key={tag} variant="default">
@@ -66,9 +67,8 @@ export function BlogCard({ post }: BlogCardProps) {
           ))}
         </div>
 
-        {/* Footer */}
         <div className="mt-4">
-          <span className="text-accent-blue text-sm font-medium">Leer más →</span>
+          <span className="text-accent-blue text-sm font-medium">{t.blog.readMore}</span>
         </div>
       </Link>
     </motion.div>

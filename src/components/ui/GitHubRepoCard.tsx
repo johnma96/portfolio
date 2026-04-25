@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { GitFork, Star } from 'lucide-react'
 import { Badge } from './Badge'
 import type { GitHubRepo } from '../../hooks/useGitHubRepos'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 interface GitHubRepoCardProps {
   repo: GitHubRepo
@@ -24,6 +25,7 @@ function getLanguageVariant(language: string | null): 'blue' | 'yellow' | 'defau
 
 export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
   const [hovered, setHovered] = useState(false)
+  const { t } = useLanguage()
 
   const visibleTopics = repo.topics.slice(0, 4)
 
@@ -39,7 +41,6 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
       }}
       className="rounded-xl p-5 border flex flex-col h-full"
     >
-      {/* Header */}
       <div className="flex items-start justify-between gap-2 mb-2">
         <h3 className="text-text-primary font-semibold text-sm leading-snug">
           {formatRepoName(repo.name)}
@@ -49,18 +50,14 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
         )}
       </div>
 
-      {/* Description */}
       <p
         className={`text-sm mb-3 flex-1 ${
-          repo.description
-            ? 'text-text-secondary'
-            : 'text-text-muted italic'
+          repo.description ? 'text-text-secondary' : 'text-text-muted italic'
         }`}
       >
-        {repo.description ?? 'Sin descripción'}
+        {repo.description ?? t.projects.noDescription}
       </p>
 
-      {/* Topics */}
       {visibleTopics.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-3">
           {visibleTopics.map((topic) => (
@@ -75,13 +72,10 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
         </div>
       )}
 
-      {/* Footer row */}
       <div className="flex items-center justify-between pt-3 border-t border-white/5 mb-3">
         <div className="flex items-center gap-2">
           {repo.language && (
-            <Badge variant={getLanguageVariant(repo.language)}>
-              {repo.language}
-            </Badge>
+            <Badge variant={getLanguageVariant(repo.language)}>{repo.language}</Badge>
           )}
         </div>
         {repo.stargazers_count > 0 && (
@@ -92,7 +86,6 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
         )}
       </div>
 
-      {/* Buttons */}
       <div className="flex gap-2">
         <a
           href={repo.html_url}

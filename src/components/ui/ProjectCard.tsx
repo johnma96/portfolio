@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { TrendingUp } from 'lucide-react'
 import { Badge } from './Badge'
 import type { CuratedProject } from '../../data/projects'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 interface ProjectCardProps {
   project: CuratedProject
@@ -10,6 +11,12 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false)
+  const { lang } = useLanguage()
+
+  const title = lang === 'en' && project.titleEn ? project.titleEn : project.title
+  const type = lang === 'en' && project.typeEn ? project.typeEn : project.type
+  const description = lang === 'en' && project.descriptionEn ? project.descriptionEn : project.description
+  const metric = lang === 'en' && project.metricEn ? project.metricEn : project.metric
 
   return (
     <motion.div
@@ -23,22 +30,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
       }}
       className="rounded-xl p-5 border flex flex-col h-full"
     >
-      {/* Type badge */}
       <div className="mb-3">
-        <Badge variant="purple">{project.type}</Badge>
+        <Badge variant="purple">{type}</Badge>
       </div>
 
-      {/* Title */}
-      <h3 className="text-lg font-semibold text-text-primary mb-2">
-        {project.title}
-      </h3>
+      <h3 className="text-lg font-semibold text-text-primary mb-2">{title}</h3>
 
-      {/* Description */}
-      <p className="text-text-secondary text-sm mb-4 flex-1">
-        {project.description}
-      </p>
+      <p className="text-text-secondary text-sm mb-4 flex-1">{description}</p>
 
-      {/* Tags */}
       {project.tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-3">
           {project.tags.map((tag) => (
@@ -49,17 +48,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
       )}
 
-      {/* Metric */}
-      {project.metric && (
+      {metric && (
         <div className="flex items-center gap-1.5 mb-3">
           <TrendingUp size={14} className="text-accent-green shrink-0" />
-          <span className="text-accent-green text-sm font-medium">
-            {project.metric}
-          </span>
+          <span className="text-accent-green text-sm font-medium">{metric}</span>
         </div>
       )}
 
-      {/* Buttons */}
       {(project.github !== null || project.demo !== null) && (
         <div className="flex gap-2 pt-3 border-t border-white/5">
           {project.github !== null && (

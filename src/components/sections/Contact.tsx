@@ -6,6 +6,7 @@ import { GithubIcon, LinkedinIcon } from '../ui/SocialIcons'
 import { fadeInUp, staggerContainer, scaleIn } from '../../lib/motion'
 import { GradientText } from '../ui/GradientText'
 import { SITE_CONFIG } from '../../data/config'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 interface ContactForm {
   name: string
@@ -16,6 +17,7 @@ interface ContactForm {
 export function Contact() {
   const [submitted, setSubmitted] = useState<boolean>(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const { t } = useLanguage()
 
   const {
     register,
@@ -39,9 +41,7 @@ export function Contact() {
     if (res.ok) {
       setSubmitted(true)
     } else {
-      setSubmitError(
-        'Hubo un error al enviar. Escríbeme directamente a ' + SITE_CONFIG.contact.email
-      )
+      setSubmitError(t.contact.sendError + SITE_CONFIG.contact.email)
     }
   }
 
@@ -55,30 +55,23 @@ export function Contact() {
       viewport={{ once: true }}
     >
       <div className="max-w-2xl mx-auto px-6 text-center">
-        {/* Label */}
         <motion.div variants={fadeInUp}>
           <span className="text-sm font-medium tracking-widest uppercase text-accent-purple">
-            // Contacto
+            {t.contact.label}
           </span>
         </motion.div>
 
-        {/* Título */}
         <motion.div variants={fadeInUp}>
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary mt-3">
-            ¿Tienes un <GradientText>proyecto en mente</GradientText>?
+            {t.contact.headingPre}
+            <GradientText>{t.contact.headingGradient}</GradientText>?
           </h2>
         </motion.div>
 
-        {/* Subtítulo */}
-        <motion.p
-          variants={fadeInUp}
-          className="text-text-secondary mt-4 mb-10"
-        >
-          Estoy disponible para proyectos freelance de MLOps, pipelines de datos y sistemas LLM en
-          producción.
+        <motion.p variants={fadeInUp} className="text-text-secondary mt-4 mb-10">
+          {t.contact.subtitle}
         </motion.p>
 
-        {/* Card */}
         <motion.div
           variants={fadeInUp}
           className="rounded-2xl p-8 mt-10"
@@ -98,45 +91,44 @@ export function Contact() {
               <div className="w-16 h-16 rounded-full bg-accent-green/20 flex items-center justify-center mx-auto mb-4">
                 <Check size={32} className="text-accent-green" />
               </div>
-              <h3 className="text-xl font-semibold text-text-primary mb-2">¡Mensaje enviado!</h3>
-              <p className="text-text-secondary">Te responderé en menos de 24 horas.</p>
+              <h3 className="text-xl font-semibold text-text-primary mb-2">
+                {t.contact.successTitle}
+              </h3>
+              <p className="text-text-secondary">{t.contact.successBody}</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-              {/* Nombre + Email — 2 columnas en desktop */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                {/* Nombre */}
                 <div className="text-left">
                   <input
                     type="text"
-                    placeholder="Tu nombre"
+                    placeholder={t.contact.namePlaceholder}
                     className="w-full px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-accent-purple/50 transition"
                     style={{
                       background: 'rgba(255,255,255,0.05)',
                       border: '1px solid rgba(255,255,255,0.08)',
                     }}
-                    {...register('name', { required: 'El nombre es obligatorio' })}
+                    {...register('name', { required: t.contact.nameRequired })}
                   />
                   {errors.name && (
                     <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>
                   )}
                 </div>
 
-                {/* Email */}
                 <div className="text-left">
                   <input
                     type="email"
-                    placeholder="Tu email"
+                    placeholder={t.contact.emailPlaceholder}
                     className="w-full px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-accent-purple/50 transition"
                     style={{
                       background: 'rgba(255,255,255,0.05)',
                       border: '1px solid rgba(255,255,255,0.08)',
                     }}
                     {...register('email', {
-                      required: 'El email es obligatorio',
+                      required: t.contact.emailRequired,
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: 'Email inválido',
+                        message: t.contact.emailInvalid,
                       },
                     })}
                   />
@@ -146,19 +138,18 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Mensaje */}
               <div className="mb-4 text-left">
                 <textarea
                   rows={5}
-                  placeholder="Cuéntame sobre tu proyecto..."
+                  placeholder={t.contact.messagePlaceholder}
                   className="w-full px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-accent-purple/50 transition resize-none"
                   style={{
                     background: 'rgba(255,255,255,0.05)',
                     border: '1px solid rgba(255,255,255,0.08)',
                   }}
                   {...register('message', {
-                    required: 'El mensaje es obligatorio',
-                    minLength: { value: 20, message: 'Mínimo 20 caracteres' },
+                    required: t.contact.messageRequired,
+                    minLength: { value: 20, message: t.contact.messageMinLength },
                   })}
                 />
                 {errors.message && (
@@ -166,12 +157,10 @@ export function Contact() {
                 )}
               </div>
 
-              {/* Error de envío */}
               {submitError && (
                 <p className="mb-4 text-sm text-red-400 text-left">{submitError}</p>
               )}
 
-              {/* Botón submit */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -200,22 +189,21 @@ export function Contact() {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                       />
                     </svg>
-                    Enviando...
+                    {t.contact.sending}
                   </span>
                 ) : (
-                  'Enviar mensaje →'
+                  t.contact.sendButton
                 )}
               </button>
             </form>
           )}
         </motion.div>
 
-        {/* Social links */}
         <motion.div
           variants={fadeInUp}
           className="flex items-center justify-center gap-6 mt-10"
         >
-          <span className="text-text-muted text-sm">O encuéntrame en:</span>
+          <span className="text-text-muted text-sm">{t.contact.findMeOn}</span>
           <a
             href={SITE_CONFIG.github.profileUrl}
             target="_blank"

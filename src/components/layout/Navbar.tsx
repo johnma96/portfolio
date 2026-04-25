@@ -1,21 +1,23 @@
 import { motion } from 'framer-motion'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { GradientText } from '../ui/GradientText'
-
-const navLinks = [
-  { label: 'Proyectos', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Blog', href: '#blog' },
-]
+import { useLanguage, type Lang } from '../../contexts/LanguageContext'
 
 export function Navbar() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { lang, setLang, t } = useLanguage()
+
+  const navLinks = [
+    { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.certifications, href: '#certifications' },
+    { label: t.nav.blog, href: '#blog' },
+  ]
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const id = href.replace('#', '')
-
     if (location.pathname === '/') {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     } else {
@@ -53,13 +55,34 @@ export function Navbar() {
           ))}
         </div>
 
-        <a
-          href="#contact"
-          onClick={(e) => handleScroll(e, '#contact')}
-          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg border border-accent-purple/40 text-accent-purple hover:bg-accent-purple/10 transition-colors duration-200"
-        >
-          Trabajemos juntos →
-        </a>
+        <div className="flex items-center gap-4">
+          {/* Language toggle */}
+          <div className="flex items-center gap-1 text-xs font-semibold">
+            {(['es', 'en'] as Lang[]).map((l, i) => (
+              <span key={l} className="flex items-center gap-1">
+                {i > 0 && <span className="text-text-dim">|</span>}
+                <button
+                  onClick={() => setLang(l)}
+                  className={`px-1 py-0.5 rounded transition-colors duration-200 ${
+                    lang === l
+                      ? 'text-accent-purple'
+                      : 'text-text-muted hover:text-text-secondary'
+                  }`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              </span>
+            ))}
+          </div>
+
+          <a
+            href="#contact"
+            onClick={(e) => handleScroll(e, '#contact')}
+            className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg border border-accent-purple/40 text-accent-purple hover:bg-accent-purple/10 transition-colors duration-200"
+          >
+            {t.nav.cta}
+          </a>
+        </div>
       </div>
     </motion.nav>
   )

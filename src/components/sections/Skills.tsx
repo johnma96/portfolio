@@ -2,8 +2,11 @@ import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '../../lib/motion'
 import { SKILL_GROUPS, type SkillGroup } from '../../data/skills'
 import SkillBar from '../ui/SkillBar'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 export function Skills() {
+  const { t } = useLanguage()
+
   return (
     <motion.section
       id="skills"
@@ -13,11 +16,9 @@ export function Skills() {
       variants={staggerContainer}
       viewport={{ once: true }}
     >
-      <p className="text-accent-purple font-mono text-sm mb-3">// Stack técnico</p>
-      <h2 className="text-3xl font-bold text-text-primary mb-2">Stack técnico</h2>
-      <p className="text-text-secondary mb-12">
-        Tecnologías con las que construyo sistemas ML en producción.
-      </p>
+      <p className="text-accent-purple font-mono text-sm mb-3">{t.skills.label}</p>
+      <h2 className="text-3xl font-bold text-text-primary mb-2">{t.skills.heading}</h2>
+      <p className="text-text-secondary mb-12">{t.skills.subtitle}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {SKILL_GROUPS.map((group: SkillGroup) => (
@@ -29,9 +30,7 @@ export function Skills() {
               background: 'rgba(255,255,255,0.03)',
               border: '1px solid rgba(255,255,255,0.06)',
             }}
-            whileHover={{
-              borderColor: 'rgba(167,139,250,0.30)',
-            }}
+            whileHover={{ borderColor: 'rgba(167,139,250,0.30)' }}
           >
             <h3 className="text-base font-semibold text-text-primary mb-5">{group.label}</h3>
             <div className="flex flex-col gap-4">
