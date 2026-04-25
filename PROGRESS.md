@@ -77,6 +77,15 @@ npx tsc --noEmit  # verificar TypeScript sin compilar
 - [ ] Página 404 custom
 - [ ] Google Analytics o Vercel Analytics
 - [ ] OG image (`public/og-image.png`) para compartir en LinkedIn
+
+### Internacionalización (i18n) — para una sesión futura
+- [ ] **Selector de idioma ES / EN** en el Navbar
+- Opciones de implementación a evaluar:
+  - `react-i18next` (más completo, ideal si el blog también se traduce)
+  - `i18n-ally` + archivos JSON por idioma en `src/locales/es.json` y `src/locales/en.json`
+- Alcance: UI completa (Navbar, Hero, secciones, formulario) + metadatos de posts
+- Los posts MDX pueden vivir en `src/content/posts/es/` y `src/content/posts/en/`
+- El blog en inglés abre alcance a audiencia internacional (relevante para posiciones de AI Engineering)
 - [ ] `favicon.ico` en `public/`
 
 ### Deploy en Vercel
