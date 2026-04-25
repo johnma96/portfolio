@@ -1,0 +1,137 @@
+---
+title: "Detección de estrés de fósforo con imágenes hiperespectrales"
+date: "2025-02-01"
+excerpt: "Clasificación multiclase en fríjol común usando bandas red-edge y NIR. Pipeline completo con xarray, zarr y optimización bayesiana con Optuna."
+tags: ["Computer Vision", "Hyperspectral", "XGBoost", "Research"]
+readTime: "12 min"
+---
+
+Una imagen RGB tiene 3 canales. Una imagen hiperespectral puede tener 200 o más. Cada píxel no es un color sino un espectro de reflectancia completo, desde el ultravioleta hasta el infrarrojo cercano. Esa información extra es lo que permite detectar condiciones fisiológicas en plantas que son completamente invisibles al ojo humano.
+
+## El problema: fósforo invisible
+
+El fósforo es un macronutriente crítico para el desarrollo de las plantas. Su deficiencia provoca síntomas tardíos y difusos: hojas más oscuras, crecimiento lento, coloración rojiza en algunas especies. Para cuando los síntomas son visibles, la planta ya acumula semanas de estrés.
+
+El objetivo de este trabajo era detectar estrés de fósforo en fríjol común (*Phaseolus vulgaris*) de forma temprana, antes de los síntomas visibles, usando imágenes hiperespectrales capturadas con una cámara Specim FX10 montada en un sistema de imagen controlado.
+
+## Estructura de los datos con xarray y zarr
+
+Las imágenes hiperespectrales son cubos de datos: alto × ancho × bandas espectrales. Con 512×512 píxeles y 224 bandas, cada imagen pesa varios cientos de MB. Trabajar con NumPy en memoria no escala.
+
+Usamos `xarray` para manejar los cubos con coordenadas etiquetadas (longitudes de onda en nm) y `zarr` para almacenamiento comprimido en disco:
+
+```python
+import xarray as xr
+import zarr
+import numpy as np
+
+# Cargar imagen como DataArray con coordenadas de longitud de onda
+wavelengths = np.linspace(400, 1000, 224)  # nm
+
+cube = xr.DataArray(
+    raw_data,  # shape: (H, W, 224)
+    dims=["y", "x", "wavelength"],
+    coords={"wavelength": wavelengths}
+)
+
+# Guardar comprimido
+cube.to_zarr("data/cubes/sample_001.zarr", mode="w")
+
+# Leer banda específica sin cargar todo
+loaded = xr.open_zarr("data/cubes/sample_001.zarr")
+red_edge = loaded.sel(wavelength=slice(700, 730)).mean(dim="wavelength")
+```
+
+La compresión zarr con `blosc` redujo el tamaño de almacenamiento ~5x respecto a arrays NumPy crudos, y la lectura por banda evitó cargar cubos completos en memoria.
+
+## Selección de bandas relevantes para fósforo
+
+No todas las 224 bandas aportan información útil. Las regiones espectrales más informativas para estrés de fósforo son:
+
+- **Red-edge (700–730 nm):** indica el punto de inflexión de la clorofila. Las plantas con estrés tienen el red-edge desplazado hacia longitudes de onda más cortas.
+- **NIR (760–900 nm):** reflectancia alta relacionada con estructura celular. El estrés reduce la turgencia y baja la reflectancia NIR.
+- **Verde (530–570 nm):** pico de reflectancia de plantas sanas. Se atenúa con estrés.
+
+Construimos índices de vegetación clásicos como features:
+
+```python
+def compute_indices(cube: xr.DataArray) -> dict:
+    R670 = cube.sel(wavelength=670, method="nearest")
+    R800 = cube.sel(wavelength=800, method="nearest")
+    R720 = cube.sel(wavelength=720, method="nearest")
+    R550 = cube.sel(wavelength=550, method="nearest")
+
+    ndvi = (R800 - R670) / (R800 + R670 + 1e-8)
+    # Red-edge inflection point proxy
+    reip = 700 + 40 * ((R670 + R800) / 2 - R720) / (R760 - R720 + 1e-8)
+    # Simple ratio
+    sr = R800 / (R670 + 1e-8)
+
+    return {"ndvi": ndvi, "reip": reip, "sr": sr, "R550": R550, "R720": R720}
+```
+
+Además de los índices, extrajimos estadísticas por región de interés (ROI) de cada hoja: media, desviación estándar y percentil 90 por banda en la región red-edge completa.
+
+## Pipeline de clasificación
+
+El dataset final tenía ~4,200 muestras (ROIs de hojas) con 3 clases: control (sin estrés), estrés leve y estrés severo. El desbalance era moderado (~50% / 30% / 20%).
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from xgboost import XGBClassifier
+
+pipeline = Pipeline([
+    ("scaler", StandardScaler()),
+    ("clf", XGBClassifier(
+        objective="multi:softprob",
+        num_class=3,
+        eval_metric="mlogloss",
+        use_label_encoder=False,
+        tree_method="hist",
+    ))
+])
+```
+
+## Optimización con Optuna
+
+En vez de grid search, usamos Optuna para búsqueda bayesiana sobre el espacio de hiperparámetros:
+
+```python
+import optuna
+
+def objective(trial):
+    params = {
+        "clf__n_estimators": trial.suggest_int("n_estimators", 100, 800),
+        "clf__max_depth": trial.suggest_int("max_depth", 3, 9),
+        "clf__learning_rate": trial.suggest_float("lr", 1e-3, 0.3, log=True),
+        "clf__subsample": trial.suggest_float("subsample", 0.6, 1.0),
+        "clf__colsample_bytree": trial.suggest_float("colsample", 0.6, 1.0),
+        "clf__min_child_weight": trial.suggest_int("min_child_weight", 1, 10),
+    }
+    pipeline.set_params(**params)
+    scores = cross_val_score(pipeline, X_train, y_train, cv=5, scoring="f1_macro")
+    return scores.mean()
+
+study = optuna.create_study(direction="maximize")
+study.optimize(objective, n_trials=150, n_jobs=4)
+```
+
+150 trials con 5-fold CV. Tiempo total: ~45 minutos en una VM con 8 cores.
+
+## Resultados
+
+| Clase | Precision | Recall | F1 |
+|---|---|---|---|
+| Control | 0.91 | 0.93 | 0.92 |
+| Estrés leve | 0.79 | 0.76 | 0.77 |
+| Estrés severo | 0.88 | 0.89 | 0.88 |
+| **Macro avg** | **0.86** | **0.86** | **0.86** |
+
+La mayor confusión ocurre entre control y estrés leve, lo cual es esperado: son los estados más similares espectralmente y la transición no es abrupta.
+
+## Lo que aprendimos
+
+El red-edge resultó ser la región más informativa por amplio margen (SHAP values). Las bandas NIR aportaron señal complementaria importante para la distinción de estrés severo.
+
+La variabilidad entre plantas del mismo tratamiento fue alta, lo que sugiere que el estrés de fósforo tiene una expresión espectral heterogénea dependiendo de la edad de la hoja y su posición en el canopeo. Próximo paso: incorporar posición de la hoja como feature.
