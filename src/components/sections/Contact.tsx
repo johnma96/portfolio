@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { Github, Linkedin, Mail, Check } from 'lucide-react'
+import { Mail, Check } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '../ui/SocialIcons'
 import { fadeInUp, staggerContainer, scaleIn } from '../../lib/motion'
 import { GradientText } from '../ui/GradientText'
 import { SITE_CONFIG } from '../../data/config'
@@ -221,7 +222,7 @@ export function Contact() {
             rel="noopener noreferrer"
             className="text-text-muted hover:text-text-primary transition-colors"
           >
-            <Github size={20} />
+            <GithubIcon size={20} />
           </a>
           <a
             href={SITE_CONFIG.contact.linkedin}
@@ -229,7 +230,7 @@ export function Contact() {
             rel="noopener noreferrer"
             className="text-text-muted hover:text-text-primary transition-colors"
           >
-            <Linkedin size={20} />
+            <LinkedinIcon size={20} />
           </a>
           <a
             href={`mailto:${SITE_CONFIG.contact.email}`}

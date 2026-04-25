@@ -1,12 +1,17 @@
-import { useCallback } from 'react'
-import Particles from '@tsparticles/react'
-import { loadSlimAsync } from '@tsparticles/slim'
-import type { Engine } from '@tsparticles/engine'
+import { useEffect, useState } from 'react'
+import Particles, { initParticlesEngine } from '@tsparticles/react'
+import { loadSlim } from '@tsparticles/slim'
 
 export default function ParticleBackground() {
-  const init = useCallback(async (engine: Engine) => {
-    await loadSlimAsync(engine)
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine)
+    }).then(() => setReady(true))
   }, [])
+
+  if (!ready) return null
 
   return (
     <div
@@ -19,7 +24,6 @@ export default function ParticleBackground() {
     >
       <Particles
         id="tsparticles"
-        init={init}
         options={{
           particles: {
             number: { value: 80 },

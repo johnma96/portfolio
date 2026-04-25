@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '../ui/SocialIcons'
 import { GradientText } from '../ui/GradientText'
 import { SITE_CONFIG } from '../../data/config'
 
@@ -25,7 +26,7 @@ export function Footer() {
             className="text-text-muted hover:text-text-primary transition-colors"
             aria-label="GitHub"
           >
-            <Github size={18} />
+            <GithubIcon size={18} />
           </a>
           <a
             href={SITE_CONFIG.contact.linkedin}
@@ -34,7 +35,7 @@ export function Footer() {
             className="text-text-muted hover:text-text-primary transition-colors"
             aria-label="LinkedIn"
           >
-            <Linkedin size={18} />
+            <LinkedinIcon size={18} />
           </a>
           <a
             href={`mailto:${SITE_CONFIG.contact.email}`}
