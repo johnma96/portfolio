@@ -3,6 +3,7 @@ import type { Translations } from './types'
 export const es: Translations = {
   nav: {
     projects: 'Proyectos',
+    experience: 'Experiencia',
     skills: 'Skills',
     certifications: 'Certificaciones',
     blog: 'Blog',
@@ -65,6 +66,12 @@ export const es: Translations = {
     successBody: 'Te responderé en menos de 24 horas.',
     findMeOn: 'O encuéntrame en:',
     sendError: 'Hubo un error al enviar. Escríbeme directamente a ',
+  },
+  experience: {
+    label: '// Experiencia',
+    heading: 'Experiencia laboral',
+    subtitle: 'Trayectoria profesional en ciencia de datos e IA.',
+    present: 'Actual',
   },
   certifications: {
     label: '// Certificaciones',
