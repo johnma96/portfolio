@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { GradientText } from '../ui/GradientText'
 import { useLanguage, type Lang } from '../../contexts/LanguageContext'
 
 export function Navbar() {
@@ -38,8 +37,16 @@ export function Navbar() {
       }}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="text-lg font-semibold">
-          <GradientText>jmario.dev</GradientText>
+        <a href="/" style={{ fontFamily: "'Courier New', monospace", lineHeight: '1.3' }}>
+          <div>
+            <span style={{ color: '#4db8b0', opacity: 0.7 }}>~ </span>
+            <span style={{ color: '#475569' }}>❯ </span>
+            <span style={{ color: '#f1f5f9', fontWeight: 700 }}>jmz</span>
+          </div>
+          <div style={{ fontSize: '0.75em' }}>
+            <span style={{ color: '#4db8b0' }}>--mode production</span>
+            <span className="cursor-blink" style={{ color: '#4db8b0' }}>█</span>
+          </div>
         </a>
 
         <div className="hidden md:flex items-center gap-8">

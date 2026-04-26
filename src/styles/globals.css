@@ -39,6 +39,15 @@
   }
 }
 
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 1; }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s ease-in-out infinite;
+}
+
 @layer utilities {
   .gradient-text {
     background: linear-gradient(135deg, #a78bfa, #38bdf8, #34d399);
