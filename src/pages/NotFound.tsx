@@ -24,7 +24,7 @@ export function NotFound() {
           variants={fadeInUp}
           className="text-8xl md:text-9xl font-bold mb-4"
           style={{
-            background: 'linear-gradient(135deg, #a78bfa, #38bdf8)',
+            background: 'var(--gradient-main)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}

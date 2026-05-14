@@ -19,7 +19,7 @@ export default function SkillBar({ name, level }: SkillBarProps) {
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.1 }}
           className="h-full rounded-full"
-          style={{ background: 'linear-gradient(90deg, #a78bfa, #38bdf8)' }}
+          style={{ background: 'var(--gradient-main)' }}
         />
       </div>
     </div>

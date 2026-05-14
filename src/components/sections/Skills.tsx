@@ -27,10 +27,10 @@ export function Skills() {
             variants={fadeInUp}
             className="rounded-xl p-6 transition-colors duration-300"
             style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
             }}
-            whileHover={{ borderColor: 'rgba(167,139,250,0.30)' }}
+            whileHover={{ borderColor: 'var(--border-hover)' }}
           >
             <h3 className="text-base font-semibold text-text-primary mb-5">{group.label}</h3>
             <div className="flex flex-col gap-4">

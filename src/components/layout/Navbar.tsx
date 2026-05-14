@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useLanguage, type Lang } from '../../contexts/LanguageContext'
+import { useTheme } from '../../contexts/ThemeContext'
 
 export function Navbar() {
   const navigate = useNavigate()
   const location = useLocation()
   const { lang, setLang, t } = useLanguage()
+  const { theme, setTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navLinks = [
@@ -38,22 +40,22 @@ export function Navbar() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          background: 'rgba(10,10,15,0.8)',
+          background: 'var(--nav-bg)',
           backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid var(--border-subtle)',
         }}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <a href="/" style={{ fontFamily: "'Courier New', monospace", lineHeight: '1.3' }}>
             <div>
-              <span style={{ color: '#4db8b0', opacity: 0.7 }}>~ </span>
-              <span style={{ color: '#475569' }}>❯ </span>
-              <span style={{ color: '#f1f5f9', fontWeight: 700 }}>jmz</span>
+              <span style={{ color: 'var(--terminal-color)', opacity: 0.7 }}>~ </span>
+              <span style={{ color: 'var(--text-dim)' }}>❯ </span>
+              <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>jmz</span>
             </div>
             <div style={{ fontSize: '0.75em' }}>
-              <span style={{ color: '#4db8b0' }}>--mode production</span>
-              <span className="cursor-blink" style={{ color: '#4db8b0' }}>█</span>
+              <span style={{ color: 'var(--terminal-color)' }}>--mode production</span>
+              <span className="cursor-blink" style={{ color: 'var(--terminal-color)' }}>█</span>
             </div>
           </a>
 
@@ -92,6 +94,15 @@ export function Navbar() {
               ))}
             </div>
 
+            {/* Theme toggle */}
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-1.5 text-text-muted hover:text-text-primary transition-colors duration-200"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+
             {/* Desktop CTA */}
             <a
               href="#contact"
@@ -123,7 +134,7 @@ export function Navbar() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="fixed top-16 left-0 right-0 z-40 md:hidden"
             style={{
-              background: 'rgba(10,10,15,0.97)',
+              background: 'var(--bg-primary)',
               backdropFilter: 'blur(12px)',
               borderBottom: '1px solid rgba(255,255,255,0.06)',
             }}

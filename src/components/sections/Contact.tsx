@@ -77,8 +77,8 @@ export function Contact() {
           className="rounded-2xl p-8 mt-10"
           style={{
             background:
-              'radial-gradient(ellipse at 50% -20%, rgba(167,139,250,0.12), transparent 60%), rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.08)',
+              'radial-gradient(ellipse at 50% -20%, rgba(167,139,250,0.12), transparent 60%), var(--bg-card)',
+            border: '1px solid var(--border-mid)',
           }}
         >
           {submitted ? (
@@ -105,8 +105,8 @@ export function Contact() {
                     placeholder={t.contact.namePlaceholder}
                     className="w-full px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-accent-purple/50 transition"
                     style={{
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: 'var(--input-bg)',
+                      border: '1px solid var(--border-mid)',
                     }}
                     {...register('name', { required: t.contact.nameRequired })}
                   />
@@ -121,8 +121,8 @@ export function Contact() {
                     placeholder={t.contact.emailPlaceholder}
                     className="w-full px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-accent-purple/50 transition"
                     style={{
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: 'var(--input-bg)',
+                      border: '1px solid var(--border-mid)',
                     }}
                     {...register('email', {
                       required: t.contact.emailRequired,
@@ -165,7 +165,7 @@ export function Contact() {
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full py-3 rounded-lg font-medium text-white transition-opacity disabled:opacity-60"
-                style={{ background: 'linear-gradient(135deg, #a78bfa, #38bdf8)' }}
+                style={{ background: 'var(--gradient-main)' }}
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">

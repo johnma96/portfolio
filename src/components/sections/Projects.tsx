@@ -50,7 +50,7 @@ export function Projects() {
         </div>
 
         {/* Divider */}
-        <hr className="my-16" style={{ borderColor: 'rgba(255,255,255,0.06)' }} />
+        <hr className="my-16" style={{ borderColor: 'var(--border-subtle)' }} />
 
         {/* GitHub repos section */}
         <motion.div variants={fadeInUp} className="mb-12">

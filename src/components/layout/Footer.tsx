@@ -10,12 +10,12 @@ export function Footer() {
   return (
     <footer
       className="py-12 border-t"
-      style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+      style={{ borderColor: 'var(--border-subtle)' }}
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm font-semibold" style={{ fontFamily: "'Courier New', monospace" }}>
-          <span style={{ color: '#4db8b0', opacity: 0.7 }}>~ </span>
-          <span style={{ color: '#475569' }}>❯ </span>
+          <span style={{ color: 'var(--terminal-color)', opacity: 0.7 }}>~ </span>
+          <span style={{ color: 'var(--text-dim)' }}>❯ </span>
           <GradientText>John Montoya</GradientText>
         </p>
 

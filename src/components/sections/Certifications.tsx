@@ -38,8 +38,8 @@ export function Certifications() {
                 whileHover={{ y: -4 }}
                 className="rounded-xl p-5 border flex flex-col gap-3 transition-colors duration-200"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.06)',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-subtle)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = `${cert.color}55`

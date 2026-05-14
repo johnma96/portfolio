@@ -26,12 +26,12 @@ export function BlogCard({ post }: BlogCardProps) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.06)',
+        background: 'var(--bg-card)',
+        border: '1px solid var(--border-subtle)',
       }}
       className="rounded-xl p-6 flex flex-col h-full cursor-pointer"
       onMouseEnter={(e) => {
-        e.currentTarget.style.border = '1px solid rgba(56,189,248,0.30)'
+        e.currentTarget.style.border = '1px solid rgba(56,189,248,0.40)'
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.border = '1px solid rgba(255,255,255,0.06)'

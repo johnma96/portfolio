@@ -11,7 +11,7 @@ export function Hero() {
     <section
       id="hero"
       className="min-h-screen relative overflow-hidden"
-      style={{ backgroundColor: '#0a0a0f' }}
+      style={{ backgroundColor: 'var(--bg-primary)' }}
     >
       <ParticleBackground />
 
@@ -51,7 +51,7 @@ export function Hero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 className="px-6 py-3 rounded-lg font-medium text-white"
-                style={{ background: 'linear-gradient(135deg, #a78bfa, #38bdf8)' }}
+                style={{ background: 'var(--gradient-main)' }}
                 onClick={() => {
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                 }}
@@ -96,7 +96,7 @@ export function Hero() {
               {/* Glow */}
               <div
                 className="absolute inset-0 rounded-full blur-3xl opacity-25"
-                style={{ background: 'linear-gradient(135deg, #a78bfa, #38bdf8)' }}
+                style={{ background: 'var(--gradient-main)' }}
               />
               {/* Photo */}
               <div
@@ -104,6 +104,7 @@ export function Hero() {
                 style={{
                   border: '2px solid rgba(167,139,250,0.35)',
                   boxShadow: '0 0 60px rgba(167,139,250,0.12)',
+                  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
                 }}
               >
                 <img

@@ -7,26 +7,26 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          primary: '#0a0a0f',
-          secondary: '#0f0f1a',
-          card: 'rgba(255,255,255,0.03)',
+          primary:   'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          card:      'var(--bg-card)',
         },
         accent: {
-          purple: '#a78bfa',
-          blue: '#38bdf8',
-          green: '#34d399',
+          purple:     'rgb(var(--accent-purple-rgb) / <alpha-value>)',
+          blue:       'rgb(var(--accent-blue-rgb) / <alpha-value>)',
+          green:      'rgb(var(--accent-green-rgb) / <alpha-value>)',
           purpleDark: '#7c3aed',
         },
         text: {
-          primary: '#f1f5f9',
-          secondary: '#94a3b8',
-          muted: '#64748b',
-          dim: '#475569',
+          primary:   'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          muted:     'var(--text-muted)',
+          dim:       'var(--text-dim)',
         },
         border: {
-          subtle: 'rgba(255,255,255,0.06)',
-          default: 'rgba(255,255,255,0.10)',
-          hover: 'rgba(167,139,250,0.30)',
+          subtle:  'var(--border-subtle)',
+          default: 'var(--border-default)',
+          hover:   'var(--border-hover)',
         },
       },
       fontFamily: {

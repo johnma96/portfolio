@@ -51,7 +51,7 @@ export function Experience() {
                       </span>
                     ) : (
                       <span className="w-6 h-6 rounded-full bg-background-secondary flex items-center justify-center"
-                        style={{ border: '1px solid rgba(167,139,250,0.3)' }}>
+                        style={{ border: '1px solid rgb(var(--accent-purple-rgb) / 0.3)' }}>
                         <span className="w-2 h-2 rounded-full bg-accent-purple/60" />
                       </span>
                     )}
@@ -61,10 +61,10 @@ export function Experience() {
                   <div
                     className="rounded-xl p-6"
                     style={{
-                      background: 'rgba(255,255,255,0.03)',
+                      background: 'var(--bg-card)',
                       border: entry.current
-                        ? '1px solid rgba(52,211,153,0.20)'
-                        : '1px solid rgba(255,255,255,0.06)',
+                        ? '1px solid rgb(var(--accent-green-rgb) / 0.25)'
+                        : '1px solid var(--border-subtle)',
                     }}
                   >
                     {/* Header */}
@@ -74,7 +74,7 @@ export function Experience() {
                           <h3 className="text-base font-bold text-text-primary">{entry.company}</h3>
                           {entry.current && (
                             <span className="text-xs px-2 py-0.5 rounded-full font-medium"
-                              style={{ background: 'rgba(52,211,153,0.15)', color: '#34d399' }}>
+                              style={{ background: 'rgb(var(--accent-green-rgb) / 0.15)', color: 'rgb(var(--accent-green-rgb))' }}>
                               {t.experience.present}
                             </span>
                           )}

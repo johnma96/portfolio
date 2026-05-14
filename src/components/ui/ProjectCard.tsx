@@ -24,8 +24,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        borderColor: hovered ? 'rgba(167,139,250,0.30)' : 'rgba(255,255,255,0.06)',
+        background: 'var(--bg-card)',
+        borderColor: hovered ? 'var(--border-hover)' : 'var(--border-subtle)',
         transition: 'border-color 0.2s ease',
       }}
       className="rounded-xl p-5 border flex flex-col h-full"

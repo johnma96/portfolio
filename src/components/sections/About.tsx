@@ -42,7 +42,7 @@ export function About() {
                 <div
                   key={item.period}
                   className="flex items-start justify-between gap-4 py-3 border-b"
-                  style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+                  style={{ borderColor: 'var(--border-subtle)' }}
                 >
                   <div>
                     <p className="text-sm text-text-primary font-medium">
