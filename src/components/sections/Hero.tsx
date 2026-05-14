@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { GradientText } from '../ui/GradientText'
 import ParticleBackground from '../ui/ParticleBackground'
-import TechOrbit from '../ui/TechOrbit'
 import { fadeInUp, staggerContainer } from '../../lib/motion'
 import { useLanguage } from '../../contexts/LanguageContext'
 
@@ -16,8 +15,10 @@ export function Hero() {
     >
       <ParticleBackground />
 
-      <div className="relative z-10 flex items-center min-h-screen">
+      <div className="relative flex items-center min-h-screen" style={{ zIndex: 2 }}>
         <div className="w-full max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+          {/* Left — text content */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -77,19 +78,43 @@ export function Hero() {
                     <span className="text-xs text-text-muted">{stat.label}</span>
                   </div>
                   {i < t.hero.stats.length - 1 && (
-                    <div
-                      className="w-px h-8"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
-                    />
+                    <div className="w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
                   )}
                 </div>
               ))}
             </motion.div>
           </motion.div>
 
-          <div className="hidden md:flex items-center justify-center">
-            <TechOrbit />
-          </div>
+          {/* Right — profile photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+            className="hidden md:flex items-center justify-center"
+          >
+            <div className="relative">
+              {/* Glow */}
+              <div
+                className="absolute inset-0 rounded-full blur-3xl opacity-25"
+                style={{ background: 'linear-gradient(135deg, #a78bfa, #38bdf8)' }}
+              />
+              {/* Photo */}
+              <div
+                className="relative w-80 h-80 rounded-full overflow-hidden"
+                style={{
+                  border: '2px solid rgba(167,139,250,0.35)',
+                  boxShadow: '0 0 60px rgba(167,139,250,0.12)',
+                }}
+              >
+                <img
+                  src="/profile.png"
+                  alt="John Mario Montoya"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

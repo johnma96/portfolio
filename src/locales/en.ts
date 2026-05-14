@@ -2,6 +2,7 @@ import type { Translations } from './types'
 
 export const en: Translations = {
   nav: {
+    about: 'About',
     projects: 'Projects',
     experience: 'Experience',
     skills: 'Skills',
@@ -66,6 +67,13 @@ export const en: Translations = {
     successBody: "I'll get back to you within 24 hours.",
     findMeOn: 'Or find me on:',
     sendError: 'There was an error sending. Email me directly at ',
+  },
+  about: {
+    label: '// About me',
+    heading: 'About me',
+    bio1: "I'm a Civil Engineer turned AI Engineer — a path that taught me that engineering is the same regardless of the domain: understand the problem, model it, and build something that works in the real world.",
+    bio2: "I've spent 5+ years at the intersection of data science, MLOps and Generative AI. I'm passionate about taking ML models from a notebook to production: building the pipelines, infrastructure and systems that make them work at scale.",
+    educationHeading: 'Education',
   },
   experience: {
     label: '// Experience',

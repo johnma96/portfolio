@@ -1,5 +1,6 @@
 export interface Translations {
   nav: {
+    about: string
     projects: string
     experience: string
     skills: string
@@ -58,6 +59,13 @@ export interface Translations {
     successBody: string
     findMeOn: string
     sendError: string
+  }
+  about: {
+    label: string
+    heading: string
+    bio1: string
+    bio2: string
+    educationHeading: string
   }
   experience: {
     label: string

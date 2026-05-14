@@ -20,7 +20,7 @@ export function Footer() {
         </p>
 
         <p className="text-xs text-text-muted">
-          © {new Date().getFullYear()} Mario Montoya. {t.footer.madeWith}
+          © {new Date().getFullYear()} John Montoya. {t.footer.madeWith}
         </p>
 
         <div className="flex items-center gap-4">

@@ -2,6 +2,7 @@ import type { Translations } from './types'
 
 export const es: Translations = {
   nav: {
+    about: 'Sobre mí',
     projects: 'Proyectos',
     experience: 'Experiencia',
     skills: 'Skills',
@@ -66,6 +67,13 @@ export const es: Translations = {
     successBody: 'Te responderé en menos de 24 horas.',
     findMeOn: 'O encuéntrame en:',
     sendError: 'Hubo un error al enviar. Escríbeme directamente a ',
+  },
+  about: {
+    label: '// Sobre mí',
+    heading: 'Sobre mí',
+    bio1: 'Soy un Ingeniero Civil convertido en AI Engineer — un camino que me enseñó que la ingeniería es la misma sin importar el dominio: entender el problema, modelarlo y construir algo que funcione en el mundo real.',
+    bio2: 'Llevo más de 5 años en la intersección entre ciencia de datos, MLOps e IA Generativa. Me apasiona llevar modelos de ML desde un notebook hasta producción: construir los pipelines, la infraestructura y los sistemas que los hacen funcionar a escala.',
+    educationHeading: 'Formación académica',
   },
   experience: {
     label: '// Experiencia',

@@ -79,33 +79,6 @@ export default function TechOrbit() {
         <OrbitRing key={ring.radius} ring={ring} />
       ))}
 
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 80,
-          height: 80,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #a78bfa, #38bdf8)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 0 40px rgba(167,139,250,0.3)',
-        }}
-      >
-        <span
-          style={{
-            fontSize: '1.25rem',
-            fontWeight: 700,
-            color: '#0a0a0f',
-            letterSpacing: '0.05em',
-          }}
-        >
-          AI
-        </span>
-      </div>
     </div>
   )
 }
