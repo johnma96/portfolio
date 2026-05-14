@@ -63,6 +63,7 @@ export interface Translations {
   about: {
     label: string
     heading: string
+    greeting: string
     bio1: string
     bio2: string
     educationHeading: string

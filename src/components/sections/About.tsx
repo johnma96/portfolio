@@ -25,6 +25,9 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Bio */}
           <motion.div variants={fadeInUp} className="flex flex-col gap-5">
+            <p className="text-text-primary text-lg font-medium leading-snug">
+              {t.about.greeting}
+            </p>
             <p className="text-text-secondary leading-relaxed">{t.about.bio1}</p>
             <p className="text-text-secondary leading-relaxed">{t.about.bio2}</p>
           </motion.div>

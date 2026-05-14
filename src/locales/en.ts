@@ -71,8 +71,9 @@ export const en: Translations = {
   about: {
     label: '// About me',
     heading: 'About me',
-    bio1: "I'm a Civil Engineer turned AI Engineer — a path that taught me that engineering is the same regardless of the domain: understand the problem, model it, and build something that works in the real world.",
-    bio2: "I've spent 5+ years at the intersection of data science, MLOps and Generative AI. I'm passionate about taking ML models from a notebook to production: building the pipelines, infrastructure and systems that make them work at scale.",
+    greeting: "Hi, I'm Mario — let me tell you how a Civil Engineer ended up building AI systems in production.",
+    bio1: "That path taught me that engineering is the same regardless of the domain: understand the problem, model it, and build something that works in the real world. I didn't come to data by trend — I came because I saw that data was the new infrastructure.",
+    bio2: "Today I've spent 5+ years at the intersection of data science, MLOps and Generative AI. I'm passionate about taking models from a notebook to production: building the pipelines, infrastructure and systems that make them work at scale and generate real value.",
     educationHeading: 'Education',
   },
   experience: {

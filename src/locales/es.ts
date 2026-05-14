@@ -71,8 +71,9 @@ export const es: Translations = {
   about: {
     label: '// Sobre mí',
     heading: 'Sobre mí',
-    bio1: 'Soy un Ingeniero Civil convertido en AI Engineer — un camino que me enseñó que la ingeniería es la misma sin importar el dominio: entender el problema, modelarlo y construir algo que funcione en el mundo real.',
-    bio2: 'Llevo más de 5 años en la intersección entre ciencia de datos, MLOps e IA Generativa. Me apasiona llevar modelos de ML desde un notebook hasta producción: construir los pipelines, la infraestructura y los sistemas que los hacen funcionar a escala.',
+    greeting: 'Hola, soy Mario — y quiero contarte cómo un Ingeniero Civil terminó construyendo sistemas de IA en producción.',
+    bio1: 'Ese camino me enseñó que la ingeniería es la misma sin importar el dominio: entender el problema, modelarlo y construir algo que funcione en el mundo real. No llegué a los datos por moda — llegué porque vi que los datos eran la nueva infraestructura.',
+    bio2: 'Hoy llevo más de 5 años en la intersección entre ciencia de datos, MLOps e IA Generativa. Me apasiona llevar modelos desde un notebook hasta producción: construir los pipelines, la infraestructura y los sistemas que los hacen funcionar a escala y generar valor real.',
     educationHeading: 'Formación académica',
   },
   experience: {
