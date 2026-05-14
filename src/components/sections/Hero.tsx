@@ -3,9 +3,21 @@ import { GradientText } from '../ui/GradientText'
 import ParticleBackground from '../ui/ParticleBackground'
 import { fadeInUp, staggerContainer } from '../../lib/motion'
 import { useLanguage } from '../../contexts/LanguageContext'
+import { useTypewriter } from '../../hooks/useTypewriter'
+
+const LINE1 = 'Data Scientist →'
+const LINE2 = 'AI Engineer'
+const SPEED1 = 65
+const SPEED2 = 80
+const START = 600
 
 export function Hero() {
   const { lang, t } = useLanguage()
+
+  const { displayed: line1, done: line1Done } = useTypewriter(LINE1, SPEED1, START)
+  const { displayed: line2, done: line2Done } = useTypewriter(
+    LINE2, SPEED2, START + LINE1.length * SPEED1 + 250
+  )
 
   return (
     <section
@@ -34,8 +46,18 @@ export function Hero() {
               variants={fadeInUp}
               className="text-5xl md:text-7xl font-bold leading-tight"
             >
-              <span className="text-text-primary block">Data Scientist →</span>
-              <GradientText>AI Engineer</GradientText>
+              <span className="text-text-primary block">
+                {line1}
+                {!line1Done && (
+                  <span className="cursor-blink text-text-muted font-thin">|</span>
+                )}
+              </span>
+              <span>
+                <GradientText>{line2}</GradientText>
+                {line1Done && !line2Done && (
+                  <span className="cursor-blink text-accent-purple font-thin">|</span>
+                )}
+              </span>
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="text-text-secondary text-lg">

@@ -9,12 +9,17 @@ import { Blog } from './pages/Blog'
 import { BlogPost } from './pages/BlogPost'
 import { NotFound } from './pages/NotFound'
 import TechOrbit from './components/ui/TechOrbit'
+import { ScrollProgress } from './components/ui/ScrollProgress'
+import { BackToTop } from './components/ui/BackToTop'
 
 function AppContent() {
   const { theme } = useTheme()
 
   return (
     <BrowserRouter>
+      <ScrollProgress />
+      <BackToTop />
+
       {/* TechOrbit fijo en el fondo — opacidad según tema */}
       <div
         className="fixed hidden lg:flex items-center justify-center pointer-events-none"
