@@ -48,6 +48,21 @@ export const CURATED_PROJECTS: CuratedProject[] = [
     featured: true,
   },
   {
+    id: 'clean-agents-template',
+    title: 'Clean Agents Template',
+    titleEn: 'Clean Agents Template',
+    type: 'AI Agents · Clean Architecture · Open Source',
+    typeEn: 'AI Agents · Clean Architecture · Open Source',
+    description:
+      'Template Cookiecutter production-ready para construir agentes de IA y aplicaciones LLM en Python. Arquitectura limpia, estructura escalable y mejores prácticas desde el primer commit.',
+    descriptionEn:
+      'Production-ready Cookiecutter template for building AI Agents and LLM applications in Python. Clean architecture, scalable structure and best practices from the first commit.',
+    tags: ['Python', 'LLMs', 'Agents', 'Cookiecutter', 'Clean Architecture'],
+    github: 'https://github.com/johnma96/clean-agents-template',
+    demo: null,
+    featured: false,
+  },
+  {
     id: 'researchos',
     title: 'ResearchOS',
     titleEn: 'ResearchOS',
