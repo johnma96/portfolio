@@ -13,8 +13,10 @@ export function Footer() {
       style={{ borderColor: 'rgba(255,255,255,0.06)' }}
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm font-semibold">
-          <GradientText>jmario.dev</GradientText>
+        <p className="text-sm font-semibold" style={{ fontFamily: "'Courier New', monospace" }}>
+          <span style={{ color: '#4db8b0', opacity: 0.7 }}>~ </span>
+          <span style={{ color: '#475569' }}>❯ </span>
+          <GradientText>John Montoya</GradientText>
         </p>
 
         <p className="text-xs text-text-muted">
