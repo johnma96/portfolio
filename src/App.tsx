@@ -11,12 +11,14 @@ import { NotFound } from './pages/NotFound'
 import TechOrbit from './components/ui/TechOrbit'
 import { ScrollProgress } from './components/ui/ScrollProgress'
 import { BackToTop } from './components/ui/BackToTop'
+import { CustomCursor } from './components/ui/CustomCursor'
 
 function AppContent() {
   const { theme } = useTheme()
 
   return (
     <BrowserRouter>
+      <CustomCursor />
       <ScrollProgress />
       <BackToTop />
 

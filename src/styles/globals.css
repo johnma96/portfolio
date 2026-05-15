@@ -65,6 +65,13 @@ html.light {
     scroll-behavior: smooth;
   }
 
+  /* Hide default cursor on desktop — replaced by CustomCursor */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
