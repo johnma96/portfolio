@@ -14,7 +14,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     skills: [
       { name: 'Python', level: 95 },
       { name: 'Scikit-learn / XGBoost', level: 88 },
-      { name: 'LLMs / LangChain / Agents', level: 87 },
+      { name: 'LLM Agents (LangChain / LangGraph)', level: 87 },
       { name: 'RAG / Vector DBs', level: 82 },
       { name: 'PyTorch', level: 72 },
     ],
@@ -36,7 +36,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { name: 'GCP / BigQuery', level: 88 },
       { name: 'Vertex AI', level: 80 },
       { name: 'Power BI', level: 75 },
-      { name: 'AWS', level: 68 },
     ],
   },
 ]
