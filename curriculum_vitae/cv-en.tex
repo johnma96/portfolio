@@ -1,0 +1,213 @@
+%% Hoja de vida de John Mario Montoya Zapata (versión en inglés).
+%% Es una traducción a inglés técnico de cv-es.tex, que es la fuente de verdad:
+%% misma información y misma estructura. No agregar datos que no estén en cv-es.tex.
+%% Basada en la plantilla AltaCV v1.6.5 de LianTze Lim, distribuida bajo la
+%% LaTeX Project Public License 1.3 (http://www.latex-project.org/lppl.txt).
+%% Compilar desde curriculum_vitae/:
+%%   latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build cv-en.tex
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+% Diseño y comandos compartidos con cv-es.tex
+\input{cv-preamble}
+\renewcommand{\cvcertlabel}{Certificate}
+
+\begin{document}
+\name{John Mario Montoya Zapata}
+\tagline{M.Eng. in Analytics, Postgraduate Specialist in Analytics, Civil Engineer}
+\photoR{2.5cm}{foto}
+\personalinfo{%
+  \settowidth{\infocolwidth}{\email{jmmontoyaz13@gmail.com}}%
+  \email{jmmontoyaz13@gmail.com}%
+  \printinfo{\faPhone}{+57 310 727 8305}[tel:+573107278305]%
+  \linkedin{john-m-montoya-z-1a375a15b}\\
+  \makebox[\infocolwidth][l]{\homepage{johnmontoya.vercel.app}}%
+  \github{johnma96}%
+}
+
+\makecvheader
+
+\AtBeginEnvironment{itemize}{\small}
+
+%% Orden de lectura: página 1 izquierda -> página 1 derecha -> página 2
+%% izquierda -> página 2 derecha. Los cortes entre columnas se hacen siempre
+%% entre dos entradas, nunca a mitad de una.
+\columnratio{0.55}
+
+%% ------------------------------------------------------------------
+%% Página 1: perfil y toda la experiencia laboral, repartida en las dos
+%% columnas (la experiencia continúa arriba de la columna derecha).
+%% ------------------------------------------------------------------
+\begin{paracol}{2}
+
+\cvsection{Professional Profile}
+
+I am an Artificial Intelligence and Data Science professional with over 6 years of experience, passionate about designing technology solutions and taking them into production environments (\textbf{MLOps}, \textbf{AIOps}). I specialize in developing solutions that improve business processes and decision-making by integrating research and information with technology. I am driven by leading the continuous modernization of organizations, continuous learning, and the democratization of knowledge in multidisciplinary teams.
+
+\cvsection{Work Experience}
+
+\cvevent{\textbf{Data Science Specialist}}{Protección S.A.}{Oct. 2025 -- Present}{Medellín, Colombia}
+
+\begin{itemize}
+\item Designed the RAG layer of a classifier for customer requests and complaints (PQRS) with 150+ categories, using label-agreement routing and LLM tie-breaking: raised automatic coverage from 50\% to 75\% while maintaining overall system accuracy (${\sim}$80\%).
+\item Provided technical advisory on the configuration (LLM, rules and harness) of an agentic system on Azure that analyzes the trading desk's chats, emails, calls and meetings to detect fraud and \mbox{bad-faith} negotiations; coverage grew from 50\% (chats and emails) to 100\% of channels.
+\item Developed and applied the MLOps framework to deploy models to production on GCP (Vertex AI, Cloud Run, BigQuery, Airflow, GKE) with Docker, Kubernetes, Jenkins and GitLab.
+\item Took on the technical mentoring of 3 data scientists, supporting them in project scoping, metric definition, tech stack selection and ML model development.
+\end{itemize}
+
+\divider
+
+\cvevent{\textbf{Data Scientist, AI Focus (8 months)}}{Tuya S.A.}{Feb. 2025 -- Oct. 2025}{Medellín, Colombia}
+
+\begin{itemize}
+\item Designed and implemented generative AI solutions (prompt engineering, agents, vector databases, RAG) for call processing (Speech2Text), information extraction, summarization, chatbots and LLM evaluation agents.
+\item Developed and optimized ML pipelines that automated model integration into production, and supported the implementation of scalable deployment architectures for ML and generative AI models.
+\end{itemize}
+
+\switchcolumn
+
+\cvevent{\textbf{Data Scientist (16 months)}}{Tuya S.A. (Risk Analytics, Model Risk)}{Oct. 2023 -- Feb. 2025}{Medellín, Colombia}
+
+\begin{itemize}
+\item Led the design and development of credit risk scoring models (probability of default) for revolving products (credit cards), with an \mbox{AUC-ROC} of about 0.80.
+\item Improved and migrated the credit risk scoring from a no-code workflow tool to Python, along with its \mbox{on-premise} deployment strategy.
+\item Led the adoption of the MLOps methodology and development best practices with MLflow, DVC, CI/CD, PySpark, Databricks and Scrum.
+\item Designed, built and maintained the TuyaPy library (OOP), which streamlined code distribution and collaboration across the analytics team.
+\end{itemize}
+
+\divider
+
+\cvevent{\textbf{Data Scientist (18 months)}}{Comercial Card S.A.S. (PTM)}{Mar. 2022 -- Sep. 2023}{Medellín, Colombia}
+
+\begin{itemize}
+\item Developed predictive models for credit portfolio, fraud and time series (SAGRILAFT AML compliance, customer segmentation) and supported their deployment to production with MLOps on Google Cloud.
+\item Helped build a data warehouse in BigQuery, migrating data with tools such as HEVO.
+\item Built interactive Power BI reports for financial KPIs and automated calculation processes in Python and KNIME on Google Compute Engine.
+\end{itemize}
+
+\divider
+
+\cvevent{\textbf{Data Analyst (20 months)}}{Early Warning System of Medellín and the Aburrá Valley (SIATA)}{Jul. 2020 -- Mar. 2022}{Medellín, Colombia}
+
+\begin{itemize}
+\item Analyzed geospatial and temporal environmental data with dimensionality reduction and transformation techniques to support decision-making in early warning and risk management systems.
+\item Developed distributable Python packages (OOP) for fast reading and analysis of high-frequency time series (20 Hz), supporting risk management.
+\end{itemize}
+
+%% Education y Technical Skills van aquí si caben completos después de la
+%% experiencia; si no, van en la página 2.
+
+\end{paracol}
+
+%% ------------------------------------------------------------------
+%% Página 2: formación a la izquierda; habilidades y complementarios a la
+%% derecha.
+%% ------------------------------------------------------------------
+\clearpage
+
+\begin{paracol}{2}
+
+\cvsection{Education}
+
+\cvevent{Master of Engineering -- Analytics}{Universidad Nacional de Colombia}{Aug. 2023 -- Dec. 2025}{Medellín}
+\cvevent{Postgraduate Specialization in Analytics}{Universidad Nacional de Colombia}{Aug. 2022 -- Jul. 2023}{Medellín}
+\cvevent{B.Eng. in Civil Engineering}{Universidad Nacional de Colombia}{Feb. 2015 -- Nov. 2020}{Medellín}
+
+\cvsection{Academic Experience}
+
+\cvevent{Non-invasive diagnosis of the health status of common beans (\textit{Phaseolus vulgaris} L.) in Colombia: an approach based on spectral fingerprinting and artificial intelligence}{Master's Thesis}{Apr. 2025 -- May 2026}{Medellín}
+
+\begin{itemize}
+\item Developed a model to detect phosphorus deficiency stress from UAV-captured hyperspectral imagery, selecting 58 spectral bands and vegetation indices.
+\item Compared ML (logistic regression, LightGBM, XGBoost) and DL models (1D-CNN and 2D-CNN in PyTorch) using a spatial data split to prevent leakage: the 2D-CNN reached a test PR-AUC of 0.96, versus 0.78--0.82 for classical models.
+\item Ensured experiment reproducibility with MLflow and DVC, and tuned hyperparameters with Optuna.
+\end{itemize}
+
+\divider
+
+\cvevent{Spatio-temporal characterization of turbulent flows in the Aburrá Valley}{Undergraduate Thesis}{Oct. 2019 -- Apr. 2020}{Medellín}
+
+\begin{itemize}
+\item Performed the statistical analysis of high-temporal-resolution sonic anemometer data (20 Hz).
+\item Applied frequency analysis techniques (Fourier transform, principal component analysis) to environmental time series.
+\item Implemented neural networks to model turbulent flow time series.
+\end{itemize}
+
+\cvsection{Awards}
+
+\cvevent{``Best Undergraduate Theses'' Award -- Civil Engineering Program (Medellín Campus), 30th edition}{Universidad Nacional de Colombia}{Apr. 2021}{Medellín}
+
+\cvevent{``Michel Hermelin Arbaux'' Award, 2021 edition}{Colombian Academy of Exact, Physical and Natural Sciences}{Nov. 2021}{Medellín}
+
+\switchcolumn
+
+\cvsection{Technical Skills}
+
+\cvskillgroup{Programming}{Python and SQL}
+\cvskillgroup{Machine Learning}{scikit-learn, XGBoost, LightGBM, risk scoring, time series}
+\cvskillgroup{Deep Learning}{PyTorch (CNN), Hugging Face}
+\cvskillgroup{Generative AI}{LLMs, RAG, agents, vector databases, LangChain, LangGraph, MCP}
+\cvskillgroup{Optimization}{Optuna, genetic algorithms (hyperparameter search)}
+\cvskillgroup{Data \& MLOps}{PySpark, Databricks, BigQuery, Airflow, MLflow, DVC, Docker, Kubernetes, Jenkins, GitLab}
+\cvskillgroup{Cloud}{GCP (Vertex AI, Cloud Run, GKE)}
+
+\cvsection{Courses}
+
+\cvcert{Building with the Claude API}{Anthropic}{Jun. 2026}{https://verify.skilljar.com/c/xrmrv9zxqoak}
+\cvcert{Introduction to Model Context Protocol}{Anthropic}{Jun. 2026}{https://verify.skilljar.com/c/iwe5zxym4sko}
+\cvcert{Claude Code in Action}{Anthropic}{Jun. 2026}{https://verify.skilljar.com/c/68uhdj7rhijq}
+\cvcert{Generative AI with Google Cloud Specialization}{Datapath}{Apr. 2026}{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}
+\cvcert{Databricks and Apache Spark for Big Data: From Zero to Expert}{Udemy}{Aug. 2025}{https://www.udemy.com/certificate/UC-5c0f1b8b-543f-4c84-b931-fc4af8443ce0/}
+\cvcert{Advanced MLOps Bootcamp | Machine Learning Operations Hands-on}{Udemy}{Aug. 2024}{https://www.udemy.com/certificate/UC-0bc813ac-b75f-43e8-b07c-973b43461042/}
+
+%% Solo se muestran los 6 cursos más recientes. Al agregar uno nuevo arriba,
+%% mover el más antiguo a este archivo.
+% \cvcert{Academy Accreditation - Databricks Lakehouse Fundamentals}{Databricks}{Mar. 2024}{https://credentials.databricks.com/76edeeff-a7ce-4891-813f-fdef277dbb83}
+% \cvcert{Object Detection}{Coursera}{Oct. 2023}{}
+% \cvcert{Data Scientist Learning Path}{Platzi}{Jul. 2022 -- Present}{}
+% \cvcert{Misión TIC 2022}{MINTIC}{Dec. 2021}{}
+% \cvcert{Data Science for All (DS4A)}{MINTIC \& Correlation One}{Sep. 2021}{}
+
+\cvsection{Languages}
+
+\begin{itemize}
+\item Spanish: Native
+\item English: B1 (Intermediate)
+\end{itemize}
+
+\cvsection{Areas of Interest}
+
+\begin{cvtags}
+\cvtag{Machine Learning}
+\cvtag{Deep Learning}
+\cvtag{Reinforcement Learning}
+\cvtag{Optimization}
+\cvtag{Recommender Systems}
+\cvtag{AI Agents}
+\cvtag{Credit Risk}
+\cvtag{Customer Retention}
+\cvtag{Statistics}
+\cvtag{Mathematical Modeling}
+\end{cvtags}
+
+\cvsection{References}
+
+\textbf{\textcolor{emphasis}{Jorge Moreno}}\\
+\textcolor{accent}{\faEnvelope}\ \textcolor{body}{jhmascus@gmail.com} \\
+\textcolor{accent}{\faPhone}\ \textcolor{body}{3014905757}
+
+\medskip
+
+\textbf{\textcolor{emphasis}{Camilo Ramírez}}\\
+\textcolor{accent}{\faEnvelope}\ \textcolor{body}{cramirezg.291@tuya.com.co} \\
+\textcolor{accent}{\faPhone}\ \textcolor{body}{3164151048}
+
+\medskip
+
+\textbf{\textcolor{emphasis}{Mauricio Ramírez}}\\
+\textcolor{accent}{\faEnvelope}\ \textcolor{body}{mauricio.ramirez@siata.gov.co} \\
+\textcolor{accent}{\faPhone}\ \textcolor{body}{3014678684}
+
+\end{paracol}
+
+\end{document}
