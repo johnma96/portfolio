@@ -41,15 +41,6 @@
   \smallskip
 }
 
-% Cargo a ancho completo: empresa a la izquierda; fechas y ciudad a la derecha
-% \cvjob{cargo}{empresa}{fechas}{ciudad}
-\newcommand{\cvjob}[4]{%
-  {\large\color{emphasis}\textbf{#1}\par}\nopagebreak
-  \smallskip
-  {\textbf{\color{accent}#2}\hfill{\small\faCalendar~#3\qquad\faMapMarker~#4}\par}\nopagebreak
-  \smallskip
-}
-
 % Las etiquetas (\cvtag) pasan a la línea siguiente en vez de salirse de la columna
 \newenvironment{cvtags}{\par\setlength{\rightskip}{0pt plus 1fil}}{\par}
 
@@ -68,9 +59,15 @@
 
 \AtBeginEnvironment{itemize}{\small}
 
+%% Orden de lectura: página 1 izquierda -> página 1 derecha -> página 2
+%% izquierda -> página 2 derecha. Los saltos de columna (\newpage dentro de
+%% una columna) se ponen siempre entre dos entradas, nunca a mitad de una.
+\columnratio{0.55}
+
+\begin{paracol}{2}
+
 %% ------------------------------------------------------------------
-%% Página 1, ancho completo: perfil y experiencia laboral. Se lee de arriba
-%% abajo; si la experiencia crece, continúa en la página 2 en el mismo orden.
+%% Columna izquierda, página 1: perfil y experiencia reciente
 %% ------------------------------------------------------------------
 
 \cvsection{Perfil profesional}
@@ -79,7 +76,7 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \cvsection{Experiencia laboral}
 
-\cvjob{Especialista en ciencia de datos}{Protección S.A.}{Oct. 2025 -- presente}{Medellín, Ant}
+\cvevent{\textbf{Especialista en ciencia de datos}}{Protección S.A.}{Oct. 2025 -- presente}{Medellín, Ant}
 
 \begin{itemize}
 \item Desarrollo y despliegue de modelos de ML y sistemas agénticos (IA) para generación de valor en el negocio financiero.
@@ -89,7 +86,7 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \divider
 
-\cvjob{Científico de datos con énfasis en IA (8 meses)}{Tuya S.A.}{Feb. 2025 -- Oct. 2025}{Medellín, Ant}
+\cvevent{\textbf{Científico de datos con énfasis en IA (8 meses)}}{Tuya S.A.}{Feb. 2025 -- Oct. 2025}{Medellín, Ant}
 
 \begin{itemize}
 \item Desarrollo y optimización de pipelines de Machine Learning para automatizar y facilitar la integración de modelos en producción, asegurando la escalabilidad, monitorización y mantenimiento continuo.
@@ -97,9 +94,14 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \item Apoyo en la implementación de arquitecturas de despliegue eficientes, sostenibles y escalables para modelos de IA generativa y otros algoritmos de ML.
 \end{itemize}
 
-\divider
+%% ------------------------------------------------------------------
+%% Columna izquierda, página 2: resto de la experiencia y académica
+%% ------------------------------------------------------------------
+\newpage
 
-\cvjob{Científico de datos (16 meses)}{Tuya S.A. (Analítica de riesgos, Riesgo de modelos)}{Oct. 2023 -- Feb. 2025}{Medellín, Ant}
+\cvsection{Experiencia laboral \textnormal{\large(cont.)}}
+
+\cvevent{\textbf{Científico de datos (16 meses)}}{Tuya S.A. (Analítica de riesgos, Riesgo de modelos)}{Oct. 2023 -- Feb. 2025}{Medellín, Ant}
 
 \begin{itemize}
 \item Liderazgo en metodología MLOps e implementación de buenas prácticas para el desarrollo de modelos de IA utilizando herramientas como MLflow, CI/CD, PySpark, DVC, Databricks, y metodologías ágiles (Scrum).
@@ -109,7 +111,7 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \divider
 
-\cvjob{Científico de datos (18 meses)}{Comercial Card S.A.S. (PTM)}{Mar. 2022 -- Sep. 2023}{Medellín, Ant}
+\cvevent{\textbf{Científico de datos (18 meses)}}{Comercial Card S.A.S. (PTM)}{Mar. 2022 -- Sep. 2023}{Medellín, Ant}
 
 \begin{itemize}
 \item Modelos predictivos para cartera, fraude y series temporales (SAGRILAFT, segmentación de clientes), con apoyo en MLOps sobre Google Cloud.
@@ -119,28 +121,12 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \divider
 
-\cvjob{Analista de datos (20 meses)}{Sistema de Alerta Temprana de Medellín y el Valle de Aburrá (SIATA)}{Jul. 2020 -- Mar. 2022}{Medellín, Ant}
+\cvevent{\textbf{Analista de datos (20 meses)}}{Sistema de Alerta Temprana de Medellín y el Valle de Aburrá (SIATA)}{Jul. 2020 -- Mar. 2022}{Medellín, Ant}
 
 \begin{itemize}
 \item Análisis de información ambiental geoespacial y temporal empleando técnicas de reducción y transformación de dimensionalidad para la toma de decisiones en sistemas de alerta temprana y gestión de riesgos.
 \item Desarrollo de paquetes distribuibles en Python usando POO, enfocados en la lectura y análisis ágil de datos para apoyar la gestión del riesgo y la comprensión de series temporales de alta frecuencia (20 Hz).
 \end{itemize}
-
-%% ------------------------------------------------------------------
-%% Página 2, dos columnas. Cada sección queda completa dentro de su columna:
-%% se lee la izquierda (formación) y luego la derecha (complementarios).
-%% ------------------------------------------------------------------
-\clearpage
-
-\columnratio{0.5}
-
-\begin{paracol}{2}
-
-\cvsection{Estudios}
-
-\cvevent{Maestría en Ingeniería -- Analítica}{Universidad Nacional de Colombia}{Ago. 2023 -- Dic. 2025}{Medellín}
-\cvevent{Especialización en Analítica}{Universidad Nacional de Colombia}{Ago. 2022 -- Jul. 2023}{Medellín}
-\cvevent{Ingeniería Civil}{Universidad Nacional de Colombia}{Feb. 2015 -- Nov. 2020}{Medellín}
 
 \cvsection{Experiencia académica}
 
@@ -152,13 +138,16 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \item Implementación de redes neuronales para el modelado de series temporales de flujos turbulentos.
 \end{itemize}
 
-\cvsection{Premios}
-
-\cvevent{Premio ``Mejores Trabajos de Grado de Pregrado'' -- Programa de Ingeniería Civil (Sede Medellín), versión XXX}{Universidad Nacional de Colombia}{Abr. 2021}{Medellín}
-
-\cvevent{Premio ``Michel Hermelin Arbaux'', versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
-
+%% ------------------------------------------------------------------
+%% Columna derecha, página 1: formación y habilidades
+%% ------------------------------------------------------------------
 \switchcolumn
+
+\cvsection{Estudios}
+
+\cvevent{Maestría en Ingeniería -- Analítica}{Universidad Nacional de Colombia}{Ago. 2023 -- Dic. 2025}{Medellín}
+\cvevent{Especialización en Analítica}{Universidad Nacional de Colombia}{Ago. 2022 -- Jul. 2023}{Medellín}
+\cvevent{Ingeniería Civil}{Universidad Nacional de Colombia}{Feb. 2015 -- Nov. 2020}{Medellín}
 
 \cvsection{Habilidades tech}
 
@@ -194,6 +183,17 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \item Español: Nativo
 \item Inglés: B1-Intermedio
 \end{itemize}
+
+%% ------------------------------------------------------------------
+%% Columna derecha, página 2: complementarios
+%% ------------------------------------------------------------------
+\newpage
+
+\cvsection{Premios}
+
+\cvevent{Premio ``Mejores Trabajos de Grado de Pregrado'' -- Programa de Ingeniería Civil (Sede Medellín), versión XXX}{Universidad Nacional de Colombia}{Abr. 2021}{Medellín}
+
+\cvevent{Premio ``Michel Hermelin Arbaux'', versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
 
 \cvsection{Áreas de interés}
 
