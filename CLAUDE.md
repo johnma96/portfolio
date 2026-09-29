@@ -38,7 +38,9 @@
 ### Estilo
 - Fechas en español con formato `Mmm. AAAA` (Ene., Feb., Mar., Abr., May., Jun., Jul., Ago., Sep., Oct., Nov., Dic.); rangos con `--`; el cargo actual termina en `presente`.
 - Duraciones solo en cargos cerrados; nunca en el cargo actual.
-- Viñetas: máximo 3–4 por cargo, empiezan con sustantivo de acción e incluyen tecnología e impacto.
+- Viñetas: máximo 4 por cargo, en primera persona y en pasado, orientadas al logro ("Diseñé…", "Lideré…", "Ayudé en la construcción de…"), con tecnología y resultado cuando exista. Aplica también a la experiencia académica.
+- Perfil: conservar la voz y el tono originales del usuario (primera persona, "Soy…", "Me motiva…"); no reescribirlo con un estilo genérico.
+- Habilidades: grupos de palabras clave (`\cvskillgroup`), sin calificaciones. Los nombres de herramientas nuevos se agregan a `\hyphenation{…}` para que no se partan con guion.
 - Cursos: mostrar solo los 6 más recientes. Al agregar uno, mover el más antiguo al bloque comentado que está debajo de la sección en el `.tex`.
 - Métricas, fechas y nombres: solo los que el usuario confirmó. Nunca inventar; si falta un dato, preguntar.
 - Nombres canónicos: Protección S.A., Tuya S.A., Comercial Card S.A.S. (PTM), SIATA; Python, PySpark, MLflow, BigQuery, Vertex AI, Hugging Face, GCP.
