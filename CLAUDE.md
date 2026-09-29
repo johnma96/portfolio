@@ -28,11 +28,12 @@
 - Después de cada cambio: compilar sin errores, revisar warnings nuevos (overfull hbox, pdfx, fuentes), confirmar que son máximo 2 páginas y revisar el PDF visualmente.
 
 ### Estructura y orden de lectura
-- Ambas páginas en dos columnas (`paracol`, izquierda 55 %). El lector recorre página 1 izquierda → página 1 derecha → página 2 izquierda → página 2 derecha.
-- Columna izquierda: perfil y experiencia laboral en orden cronológico inverso; en la página 2 continúa bajo el título "Experiencia laboral (cont.)", seguida de Experiencia académica.
-- Columna derecha: página 1 con Estudios, Habilidades, Cursos e Idiomas; página 2 con Premios, Áreas de interés y Referencias.
-- Los saltos se fuerzan con `\newpage` dentro de cada columna, siempre entre dos entradas. Ninguna entrada (cargo, estudio, curso) puede quedar partida entre columnas o páginas, y ningún título de sección puede quedar solo al final de una columna.
-- Al cambiar contenido, revisar si el salto de la columna izquierda sigue en el mejor punto (sin huecos grandes ni desbordes a una tercera página).
+- Ambas páginas en dos columnas (`paracol`, izquierda 55 %), un entorno `paracol` por página. El lector recorre página 1 izquierda → página 1 derecha → página 2 izquierda → página 2 derecha.
+- Página 1: toda la experiencia laboral, en orden cronológico inverso. Empieza en la columna izquierda después del perfil y continúa arriba de la columna derecha (`\switchcolumn`), cortando siempre entre dos cargos. Después de la experiencia, en la columna derecha, van Estudios y Habilidades solo si caben completos; si no, pasan a la página 2.
+- Página 2: a la izquierda Estudios (si no cupo en la 1), Experiencia académica y Premios; a la derecha Habilidades (si no cupo en la 1), Cursos, Idiomas, Áreas de interés y Referencias.
+- Ninguna entrada (cargo, estudio, curso) puede quedar partida entre columnas o páginas, y ningún título de sección puede quedar solo al final de una columna.
+- Al cambiar contenido, recalcular el punto de corte de la experiencia para minimizar huecos, confirmar que la página 1 no se desborda y revisar el PDF visualmente.
+- Evitar palabras largas unidas por barra (p. ej. `Python/KNIME`): generan espaciado vertical extra; escribir `Python y KNIME`.
 
 ### Estilo
 - Fechas en español con formato `Mmm. AAAA` (Ene., Feb., Mar., Abr., May., Jun., Jul., Ago., Sep., Oct., Nov., Dic.); rangos con `--`; el cargo actual termina en `presente`.
