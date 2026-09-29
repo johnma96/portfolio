@@ -22,13 +22,13 @@ export const CURATED_PROJECTS: CuratedProject[] = [
     type: 'Computer Vision · Research · UAV',
     typeEn: 'Computer Vision · Research · UAV',
     description:
-      'Clasificación multiclase con imágenes hiperespectrales capturadas con drones en fríjol común. Pipeline con xarray/zarr, extracción de bandas red-edge y NIR, y optimización bayesiana con Optuna y PyTorch.',
+      'Detección del estrés por deficiencia de fósforo en fríjol común con imágenes hiperespectrales capturadas con drones. Selección de 58 bandas espectrales e índices de vegetación, partición espacial y comparación de ML y DL: la CNN-2D en PyTorch alcanzó PR-AUC 0,96 frente a 0,78–0,82 de los modelos clásicos.',
     descriptionEn:
-      'Multiclass classification with UAV-based hyperspectral images in common bean. Pipeline with xarray/zarr, red-edge and NIR band extraction, and Bayesian optimization with Optuna and PyTorch.',
+      'Phosphorus deficiency stress detection in common bean using UAV-based hyperspectral imagery. Selection of 58 spectral bands and vegetation indices, spatial data split and ML vs. DL comparison: the PyTorch 2D-CNN reached a PR-AUC of 0.96 vs. 0.78–0.82 for classical models.',
     tags: ['Python', 'PyTorch', 'XGBoost', 'Optuna', 'MLflow', 'DVC', 'Hyperspectral'],
     metric: 'Tesis de Maestría · Universidad Nacional de Colombia',
     metricEn: "Master's Thesis · Universidad Nacional de Colombia",
-    github: 'https://github.com/johnma96/thesis',
+    github: 'https://github.com/johnma96/spectralcrop-thesis-master',
     demo: null,
     featured: true,
   },
@@ -72,7 +72,7 @@ export const CURATED_PROJECTS: CuratedProject[] = [
       'Motor de investigación open source que monitorea fuentes científicas (arXiv, PubMed, RSS), responde preguntas en lenguaje natural y envía briefings matutinos personalizados.',
     descriptionEn:
       'Open-source research engine that monitors scientific sources (arXiv, PubMed, RSS), answers questions in natural language and sends personalized morning briefings.',
-    tags: ['Python', 'LLM', 'arXiv', 'PubMed', 'RSS', 'Automation'],
+    tags: ['Python', 'LLM', 'LangGraph', 'arXiv', 'PubMed', 'RSS', 'Automation'],
     github: 'https://github.com/johnma96/researchos',
     demo: null,
     featured: false,
