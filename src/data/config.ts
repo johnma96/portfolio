@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
     showForks: false,
     maxReposDisplayed: 6,
     // Repos públicos que no se muestran en el portafolio (configuración personal)
-    excludedRepos: ['dotfiles', 'johnma96'],
+    excludedRepos: ['dotfiles', 'johnma96', 'portfolio'],
     // Descripciones bilingües de los repos. GitHub guarda una sola descripción por
     // repo; los que no estén aquí muestran la de GitHub en ambos idiomas.
     descriptionOverrides: {
@@ -32,9 +32,9 @@ export const SITE_CONFIG = {
         es: 'Notas de estudio de la ruta de aprendizaje Claude Partner Network de Anthropic: apuntes en markdown con la técnica Feynman sobre la API de Claude, MCP y Claude Code.',
         en: 'Study notes from the Anthropic Claude Partner Network Learning Path — Feynman-technique markdown notes covering Claude API, MCP, and Claude Code.',
       },
-      portfolio: {
-        es: 'Sitio web de portafolio personal construido con React + TypeScript. Tema oscuro, animaciones y blog técnico.',
-        en: 'Personal portfolio website built with React + TypeScript. Dark theme, animations & technical blog.',
+      'antigravity-crm': {
+        es: 'Sistema CRM integral para empresas inmobiliarias en Colombia, diseñado para centralizar operaciones, automatizar procesos e integrar inteligencia artificial para optimizar la gestión de propiedades, clientes y documentación legal.',
+        en: 'Comprehensive CRM for real estate companies in Colombia, designed to centralize operations, automate processes and integrate artificial intelligence to streamline the management of properties, clients and legal documents.',
       },
     } as Record<string, Record<Lang, string>>,
   },
