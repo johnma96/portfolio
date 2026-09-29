@@ -50,6 +50,10 @@
   {\small\textbf{\color{emphasis}#1:}~#2\par}\smallskip
 }
 
+% Ancho del primer campo del encabezado (correo): la segunda línea de contacto
+% usa este ancho para que sus íconos queden alineados con los de la primera
+\newlength{\infocolwidth}
+
 % Las etiquetas (\cvtag) pasan a la línea siguiente en vez de salirse de la columna
 \newenvironment{cvtags}{\par\setlength{\rightskip}{0pt plus 1fil}}{\par}
 
@@ -58,11 +62,12 @@
 \tagline{Magíster en Analítica, Especialista en Analítica, Ingeniero Civil}
 \photoR{2.5cm}{foto}
 \personalinfo{%
-  \email{jmmontoyaz13@gmail.com}
-  \printinfo{\faPhone}{+57 310 727 8305}[tel:+573107278305]
-  \linkedin{john-m-montoya-z-1a375a15b}
-  \homepage{johnmontoya.vercel.app}
-  \github{johnma96}
+  \settowidth{\infocolwidth}{\email{jmmontoyaz13@gmail.com}}%
+  \email{jmmontoyaz13@gmail.com}%
+  \printinfo{\faPhone}{+57 310 727 8305}[tel:+573107278305]%
+  \linkedin{john-m-montoya-z-1a375a15b}\\
+  \makebox[\infocolwidth][l]{\homepage{johnmontoya.vercel.app}}%
+  \github{johnma96}%
 }
 
 \makecvheader
