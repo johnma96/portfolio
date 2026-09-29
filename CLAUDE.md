@@ -31,6 +31,7 @@
 - Fechas en español con formato `Mmm. AAAA` (Ene., Feb., Mar., Abr., May., Jun., Jul., Ago., Sep., Oct., Nov., Dic.); rangos con `--`; el cargo actual termina en `presente`.
 - Duraciones solo en cargos cerrados; nunca en el cargo actual.
 - Viñetas: máximo 3–4 por cargo, empiezan con sustantivo de acción e incluyen tecnología e impacto.
+- Cursos: mostrar solo los 6 más recientes. Al agregar uno, mover el más antiguo al bloque comentado que está debajo de la sección en el `.tex`.
 - Métricas, fechas y nombres: solo los que el usuario confirmó. Nunca inventar; si falta un dato, preguntar.
 - Nombres canónicos: Protección S.A., Tuya S.A., Comercial Card S.A.S. (PTM), SIATA; Python, PySpark, MLflow, BigQuery, Vertex AI, Hugging Face, GCP.
 - Referencias: las personas listadas autorizaron publicar sus datos de contacto, así que pueden versionarse aunque el repo sea público. Cualquier referencia nueva requiere la misma confirmación del usuario.
