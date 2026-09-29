@@ -14,13 +14,12 @@ export const en: Translations = {
     badge: 'Available for freelance projects',
     subtitle: 'ML & Generative AI systems specialist · Medellín, Colombia',
     description:
-      'I build production-ready ML systems and Generative AI solutions: from data pipelines to RAG-powered agents. Specialized in GCP, AWS, Vertex AI and LLMs applied to real business problems.',
+      'I build production-ready ML systems and Generative AI solutions: from data pipelines to RAG-powered agents. Specialized in GCP, Vertex AI and LLMs applied to real business problems.',
     viewProjects: 'View projects →',
     downloadCV: 'Download CV',
     stats: [
-      { value: '5+', label: 'Years of experience' },
-      { value: '10+', label: 'Projects in production' },
-      { value: '3', label: 'Cloud platforms' },
+      { value: '6+', label: 'Years of experience' },
+      { value: 'GCP', label: 'Cloud platform' },
     ],
   },
   projects: {
@@ -73,7 +72,7 @@ export const en: Translations = {
     heading: 'About me',
     greeting: "Hi, I'm Mario — let me tell you how a Civil Engineer ended up building AI systems in production.",
     bio1: "That path taught me that engineering is the same regardless of the domain: understand the problem, model it, and build something that works in the real world. I didn't come to data by trend — I came because I saw that data was the new infrastructure.",
-    bio2: "Today I've spent 5+ years at the intersection of data science, MLOps and Generative AI. I'm passionate about taking models from a notebook to production: building the pipelines, infrastructure and systems that make them work at scale and generate real value.",
+    bio2: "Today I've spent 6+ years at the intersection of data science, MLOps and Generative AI. I'm passionate about taking models from a notebook to production: building the pipelines, infrastructure and systems that make them work at scale and generate real value.",
     educationHeading: 'Education',
   },
   experience: {

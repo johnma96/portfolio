@@ -12,6 +12,36 @@ export interface Certification {
 
 export const CERTIFICATIONS: Certification[] = [
   {
+    id: 'anthropic-claude-api',
+    name: 'Building with the Claude API',
+    nameEn: 'Building with the Claude API',
+    issuer: 'Anthropic',
+    date: '2026-06-10',
+    credentialUrl: 'https://verify.skilljar.com/c/xrmrv9zxqoak',
+    color: '#D97757',
+    skills: ['Claude API', 'Prompt engineering', 'Tool use', 'RAG', 'Agents'],
+  },
+  {
+    id: 'anthropic-mcp',
+    name: 'Introduction to Model Context Protocol',
+    nameEn: 'Introduction to Model Context Protocol',
+    issuer: 'Anthropic',
+    date: '2026-06-10',
+    credentialUrl: 'https://verify.skilljar.com/c/iwe5zxym4sko',
+    color: '#D97757',
+    skills: ['MCP', 'Tools', 'Resources', 'Prompts'],
+  },
+  {
+    id: 'anthropic-claude-code',
+    name: 'Claude Code in Action',
+    nameEn: 'Claude Code in Action',
+    issuer: 'Anthropic',
+    date: '2026-06-10',
+    credentialUrl: 'https://verify.skilljar.com/c/68uhdj7rhijq',
+    color: '#D97757',
+    skills: ['Claude Code', 'AI-assisted development', 'MCP', 'Hooks'],
+  },
+  {
     id: 'datapath-genai',
     name: 'Especialización en IA Generativa con Google Cloud',
     nameEn: 'Generative AI with Google Cloud Specialization',

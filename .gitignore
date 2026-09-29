@@ -44,3 +44,20 @@ lerna-debug.log*
 
 # OS
 Thumbs.db
+
+# LaTeX (curriculum_vitae/)
+curriculum_vitae/build/
+curriculum_vitae/*.zip
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.xmpi
