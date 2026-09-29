@@ -1,0 +1,56 @@
+%% Preámbulo compartido por cv-es.tex y cv-en.tex: página, fuentes, colores y
+%% comandos propios. Los cambios de diseño se hacen aquí, una sola vez.
+
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+% Columnas paralelas que se parten solas entre páginas
+\usepackage{paracol}
+
+\ifxetexorluatex
+  \setmainfont{Lato}
+\else
+  \usepackage[default]{lato}
+\fi
+
+\definecolor{VividPurple}{HTML}{3E0097}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{heading}{VividPurple}
+\colorlet{headingrule}{VividPurple}
+\colorlet{accent}{VividPurple}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+% Margen extra al partir líneas, para que el texto no se salga de la columna
+\setlength{\emergencystretch}{2em}
+
+% Nombres de herramientas que nunca deben partirse con guion
+\hyphenation{XGBoost LightGBM Airflow Databricks PySpark MLflow Kubernetes LangChain LangGraph TuyaPy BigQuery scoring}
+
+% Texto del enlace de cada curso; cada versión lo define en su idioma
+\newcommand{\cvcertlabel}{Certificado}
+
+% Curso o certificación en formato compacto:
+% \cvcert{nombre}{emisor}{fecha}{url del certificado (opcional)}
+\newcommand{\cvcert}[4]{%
+  {\color{emphasis}\hyphenpenalty=10000 #1\par}\nopagebreak
+  {\small\textbf{\color{accent}#2}\enspace\textperiodcentered\enspace#3%
+    \ifstrequal{#4}{}{}{\enspace\textperiodcentered\enspace\href{#4}{\textcolor{accent}{\faLink}~\cvcertlabel}}\par}
+  \smallskip
+}
+
+% Grupo de habilidades como palabras clave (legible para ATS):
+% \cvskillgroup{grupo}{herramientas separadas por comas}
+\newcommand{\cvskillgroup}[2]{%
+  {\small\textbf{\color{emphasis}#1:}~#2\par}\smallskip
+}
+
+% Ancho del primer campo del encabezado (correo): la segunda línea de contacto
+% usa este ancho para que sus íconos queden alineados con los de la primera
+\newlength{\infocolwidth}
+
+% Las etiquetas (\cvtag) pasan a la línea siguiente en vez de salirse de la columna
+\newenvironment{cvtags}{\par\setlength{\rightskip}{0pt plus 1fil}}{\par}
