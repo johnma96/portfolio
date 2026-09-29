@@ -20,9 +20,14 @@
 ## Hoja de vida (LaTeX)
 
 ### Ubicación y compilación
-- Fuente: `curriculum_vitae/cv-es.tex`, con la clase AltaCV v1.6.5 en `altacv.cls`. No editar la clase: toda personalización va en el preámbulo del `.tex`.
-- Motor: pdfLaTeX vía latexmk (MiKTeX + Strawberry Perl en Windows). Desde `curriculum_vitae/`:
-  `latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build cv-es.tex`
+- Archivos en `curriculum_vitae/`:
+  - `cv-es.tex`: versión en español, fuente de verdad.
+  - `cv-en.tex`: traducción al inglés.
+  - `cv-preamble.tex`: diseño y comandos compartidos por ambas versiones.
+  - `cv-es.xmpdata` / `cv-en.xmpdata`: metadatos del PDF.
+  - `altacv.cls`: clase AltaCV v1.6.5. No editar la clase: toda personalización va en `cv-preamble.tex`.
+- Motor: pdfLaTeX vía latexmk (MiKTeX + Strawberry Perl en Windows). Desde `curriculum_vitae/`, compilar ambas versiones:
+  `latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build cv-es.tex cv-en.tex`
 - La salida va a `curriculum_vitae/build/` (ignorada por git).
 - Si MiKTeX falla con `Font Lato-Regular-T1-TLF--base at 720 not found`: correr `initexmf --update-fndb` e `initexmf --mkmaps`, y recompilar forzando con `latexmk -g ...`.
 - Después de cada cambio: compilar sin errores, revisar warnings nuevos (overfull hbox, pdfx, fuentes), confirmar que son máximo 2 páginas y revisar el PDF visualmente.
@@ -47,8 +52,14 @@
 - Referencias: las personas listadas autorizaron publicar sus datos de contacto, así que pueden versionarse aunque el repo sea público. Cualquier referencia nueva requiere la misma confirmación del usuario.
 
 ### Idiomas
-- `cv-es.tex` es la fuente de verdad. La versión en inglés es una traducción a inglés técnico propio del campo, con la misma información.
+- `cv-es.tex` es la fuente de verdad. `cv-en.tex` es una traducción a inglés técnico propio del campo, con la misma información y estructura: mismo número de viñetas, entradas, cursos (incluido el archivo comentado), etiquetas y los mismos enlaces. Nunca agregar en inglés datos que no estén en español.
 - No traducir durante los cambios: al terminar una ronda de cambios en español, preguntar al usuario si se actualiza la versión en inglés.
+- Convenciones en inglés:
+  - Fechas `Mmm. YYYY` (Jan., Feb., Mar., Apr., May, Jun., Jul., Aug., Sep., Oct., Nov., Dec.); el cargo actual termina en `Present`; decimales con punto (0.80).
+  - Ubicación de los cargos: `Medellín, Colombia`.
+  - Términos locales con una breve aclaración: "customer requests and complaints (PQRS)", "SAGRILAFT AML compliance".
+  - La tesis de maestría usa su título oficial en inglés (el del abstract).
+  - La etiqueta de los cursos es `\cvcertlabel` = "Certificate".
 
 ### Sincronización CV → portafolio
 El CV en español es la fuente de verdad para los hechos (cargos, empresas, fechas, títulos, certificaciones, URLs). El portafolio toma solo lo que necesita: puede resumir u omitir, pero nunca contradecir. Si un cambio en el CV afecta un dato que el portafolio muestra, actualizarlo en:
