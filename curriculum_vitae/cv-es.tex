@@ -1,113 +1,71 @@
-%%%%%%%%%%%%%%%%%
-% This is an sample CV template created using altacv.cls
-% (v1.6.5, 3 Nov 2022) written by LianTze Lim (liantze@gmail.com), based on the
-% CV created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
-%
-%% It may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License, either version 1.3
-%% of this license or (at your option) any later version.
-%% The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.3 or later is part of all distributions of LaTeX
-%% version 2003/12/01 or later.
-%%%%%%%%%%%%%%%%
-
-%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
-% \documentclass[10pt,a4paper,normalphoto]{altacv}
+%% Hoja de vida de John Mario Montoya Zapata (versión en español, fuente de verdad).
+%% Basada en la plantilla AltaCV v1.6.5 de LianTze Lim, distribuida bajo la
+%% LaTeX Project Public License 1.3 (http://www.latex-project.org/lppl.txt).
+%% Compilar desde curriculum_vitae/:
+%%   latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build cv-es.tex
 
 \documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
-%% AltaCV uses the fontawesome5 package.
-%% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
-
-% Change the page layout if you need to
 \geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
 
-% The paracol package lets you typeset columns of text in parallel
+% Columnas paralelas que se parten solas entre páginas
 \usepackage{paracol}
 
-
-% Change the font if you want to, depending on whether
-% you're using pdflatex or xelatex/lualatex
 \ifxetexorluatex
-  % If using xelatex or lualatex:
   \setmainfont{Lato}
 \else
-  % If using pdflatex:
   \usepackage[default]{lato}
 \fi
 
-% Change the colours if you want to
 \definecolor{VividPurple}{HTML}{3E0097}
 \definecolor{SlateGrey}{HTML}{2E2E2E}
 \definecolor{LightGrey}{HTML}{666666}
-% \colorlet{name}{black}
-% \colorlet{tagline}{PastelRed}
 \colorlet{heading}{VividPurple}
 \colorlet{headingrule}{VividPurple}
-% \colorlet{subheading}{PastelRed}
 \colorlet{accent}{VividPurple}
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
 
-% Change some fonts, if necessary
-% \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
-% \renewcommand{\personalinfofont}{\footnotesize}
-% \renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
-% \renewcommand{\cvsubsectionfont}{\large\bfseries}
-
-% Change the bullets for itemize and rating marker
-% for \cvskill if you want to
 \renewcommand{\itemmarker}{{\small\textbullet}}
 \renewcommand{\ratingmarker}{\faCircle}
+
+% Margen extra al partir líneas, para que el texto no se salga de la columna
+\setlength{\emergencystretch}{1em}
+
+% Curso o certificación en formato compacto:
+% \cvcert{nombre}{emisor}{fecha}{url del certificado (opcional)}
+\newcommand{\cvcert}[4]{%
+  {\color{emphasis}#1\par}
+  {\small\textbf{\color{accent}#2}\enspace\textperiodcentered\enspace#3%
+    \ifstrequal{#4}{}{}{\enspace\textperiodcentered\enspace\href{#4}{\textcolor{accent}{\faLink}~Certificado}}\par}
+  \smallskip
+}
+
+% Las etiquetas (\cvtag) pasan a la línea siguiente en vez de salirse de la columna
+\newenvironment{cvtags}{\par\setlength{\rightskip}{0pt plus 1fil}}{\par}
 
 \begin{document}
 \name{John Mario Montoya Zapata}
 \tagline{Magíster en Analítica, Especialista en Analítica, Ingeniero Civil}
 \photoR{2.5cm}{foto}
 \personalinfo{%
-  % Not all of these are required!
-  % You can add your own with \printinfo{symbol}{detail}
   \email{jmmontoyaz13@gmail.com}
-%   \phone{000-00-0000}
-  %\location{Itagüí, Ant}
   \phone{3107278305}
   \linkedin{john-m-montoya-z-1a375a15b}
-  \href{https://johnmontoya.vercel.app/}{Portafolio}
-%   \github{github.com/mmayer} % I'm just making this up though.
-%   \orcid{0000-0000-0000-0000} % Obviously making this up too.
-  %% You can add your own arbitrary detail with
-  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
-  % \printinfo{\faPaw}{Hey ho!}
-  %% Or you can declare your own field with
-  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
-  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
-  % \gitlab{your_id}
-	%%
-  %% For services and platforms like Mastodon where there isn't a
-  %% straightforward relation between the user ID/nickname and the hyperlink,
-  %% you can use \printinfo directly e.g.
-  % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
-  %% But if you absolutely want to create new dedicated info fields for
-  %% such platforms, then use \NewInfoField* with a star:
-  % \NewInfoField*{mastodon}{\faMastodon}
-  %% then you can use \mastodon, with TWO arguments where the 2nd argument is
-  %% the full hyperlink.
-  % \mastodon{@username@instance}{https://instance.url/@username}
+  \homepage{johnmontoya.vercel.app}
 }
 
 \makecvheader
 
-%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
 \AtBeginEnvironment{itemize}{\small}
 
-%% Set the left/right column width ratio to 6:4.
 \columnratio{0.55}
 
-% Start a 2-column paracol. Both the left and right columns will automatically
-% break across pages if things get too long.
 \begin{paracol}{2}
 
+%% ------------------------------------------------------------------
+%% Columna izquierda: perfil y experiencia
+%% ------------------------------------------------------------------
 
 \cvsection{Perfil profesional}
 
@@ -125,16 +83,12 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \divider
 
-
 \cvevent{\textbf{Científico de datos con énfasis en IA (8 meses)}}{TUYA S.A }{Feb. 2025–Oct. 2025}{Medellín, Ant}
 
 \begin{itemize}
 \item Desarrollo y optimización de pipelines de Machine Learning para automatizar y facilitar la integración de modelos en producción, asegurando la escalabilidad, monitorización y mantenimiento continuo.
-
 \item Diseño e implementación de soluciones basadas en IA generativa (Ingeniería de prompt, agentes, bases vectoriales, RAG) para procesamiento de llamadas (Speech2Text), extracción de información relevante de textos, resumen, chatbots, agentes para evaluación de LLMs, entre otros.
-
 \item Apoyo en la implementación de arquitecturas de despliegue eficientes, sostenibles y escalables para modelos de IA Generativa y otros algoritmos de ML.
-
 \end{itemize}
 
 \divider
@@ -143,92 +97,42 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \begin{itemize}
 \item Liderazgo en metodología MLOps e implementación de buenas prácticas para el desarrollo de modelos de IA utilizando herramientas como MLflow, CI/CD, pyspark, DVC, Databricks, y metodologías ágiles (Scrum).
-
 \item Liderazgo en el diseño y desarrollo de modelos de Machine Learning para estimar la probabilidad de impago de clientes en productos rotativos y no rotativos.
-
 \end{itemize}
 
-% \divider
-
-% \cvevent{Product Engineer}{Google}{23 June 1999 -- 2001}{Palo Alto, CA}
-
-% \begin{itemize}
-% \item Joined the company as employe \#20 and female employee \#1
-% \item Developed targeted advertisement in order to use user's search queries and show them related ads
-% \end{itemize}
-\cvsection{Cursos}
-
-\cvevent{Building with the Claude API}{Anthropic}{Jun. 2026}{\href{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}{(Certificado)}}
-
 \divider
-
-\cvevent{Especialización en IA Generativa con Google Cloud}{Datapath}{Abr. 2026}{\href{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}{(Certificado)}}
-
-\divider
-
-\cvevent{Databricks y Apache Spark para Big Data: de cero a experto}{Udemy}{Ago. 2025}{\href{https://www.udemy.com/certificate/UC-5c0f1b8b-543f-4c84-b931-fc4af8443ce0/}{(Certificado)}}
-
-\divider
-
-\cvevent
-  {Bootcamp Avanzado MLOps | Machine Learning Operation Hands-on}
-  {Udemy}
-  {Ago. 2024}{\href{https://www.udemy.com/certificate/UC-0bc813ac-b75f-43e8-b07c-973b43461042/}{(Certificado)}}
-
-\divider
-
-\cvevent{Academy Accreditation - Databricks Lakehouse Fundamentals}{Databricks}{Mar. 2024}{\href{https://credentials.databricks.com/76edeeff-a7ce-4891-813f-fdef277dbb83}{(Certificado)}}
-
-\divider
-
-\cvevent{Detección de objetos}{Coursera}{Oct. 2023}{coursera.org}
-
-\divider
-
-\cvevent{Ruta Científico de datos}{Platzi}{Jul. 2022-Presente}{platzi.com}
-
-\divider
-
-\cvevent{Misión TIC 2022}{MINTIC}{Dic. 2021}{misiontic2022.gov.co}
-
-\divider
-
-\cvevent{Data Science for All (DS4A)}{MINTIC \& Correlation One}{Sept. 2021}{correlation-one.com}
-
-\divider
-
-
-% use ONLY \newpage if you want to force a page break for
-% ONLY the currentc column
-\newpage
-
-
-
-%% Switch to the right column. This will now automatically move to the second
-%% page if the content is too long.
-\switchcolumn
-
 
 \cvevent{\textbf{Científico de datos (18 meses)}}{COMERCIAL CARD S.A.S. - PTM}{Mar. 2022–Sep 2023 }{Medellín, Ant}
 
 \begin{itemize}
-
 \item Modelos predictivos para cartera, fraude y series temporales (SAGRILAFT, segmentación de clientes), con apoyo en MLOps sobre Google Cloud.
 \item Data Warehouse en BigQuery (GCP): diseño de flujos ETL con herramientas como HEVO.
 \item Reportes interactivos en Power BI para KPIs financieros y automatización de cálculos en Python/KNIME sobre Google Compute Engine.
-
 \end{itemize}
 
 \divider
 
 \cvevent{\textbf{Analista de datos (20 meses)}}{Sistema de Alerta Temprana de Medellín y el Valle de Aburrá - SIATA}{Jul. 2020-Mar. 2022}{Medellín, Ant}
+
 \begin{itemize}
 \item Análisis de información ambiental geoespacial y temporal empleando técnicas reducción y transformación de dimensionalidad para la toma de decisiones en sistemas de alerta temprana y gestión de riesgos.
-    
 \item Desarrollo de paquetes distribuibles en lenguaje python usando POO, enfocados en la lectura y análisis ágil de datos para apoyar la gestión del riesgo y la comprensión de series temporales de alta frecuencia (20 Hz).
-    
 \end{itemize}
 
+\cvsection{Experiencia académica}
+
+\cvevent{Caracterización espacio-temporal de flujos turbulentos en el Valle de Aburrá}{Tesis pregrado}{Oct. 2019–Abr. 2020}{Medellín}
+
+\begin{itemize}
+\item Análisis estadístico de los datos recolectados por anemómetros sónicos de alta resolución temporal (20 Hz).
+\item Aplicación de técnicas de análisis de frecuencia (transformada de Fourier, análisis de componentes principales) en series temporales ambientales.
+\item Implementación de redes neuronales para el modelado de series temporales de flujos turbulentos.
+\end{itemize}
+
+%% ------------------------------------------------------------------
+%% Columna derecha: formación, habilidades y complementarios
+%% ------------------------------------------------------------------
+\switchcolumn
 
 \cvsection{Estudios}
 
@@ -247,42 +151,24 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \cvskill{RAG}{3}
 \cvskill{HuggingFace}{3}
 
+\cvsection{Cursos}
 
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-
-
+\cvcert{Building with the Claude API}{Anthropic}{Jun. 2026}{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}
+\cvcert{Especialización en IA Generativa con Google Cloud}{Datapath}{Abr. 2026}{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}
+\cvcert{Databricks y Apache Spark para Big Data: de cero a experto}{Udemy}{Ago. 2025}{https://www.udemy.com/certificate/UC-5c0f1b8b-543f-4c84-b931-fc4af8443ce0/}
+\cvcert{Bootcamp Avanzado MLOps | Machine Learning Operation Hands-on}{Udemy}{Ago. 2024}{https://www.udemy.com/certificate/UC-0bc813ac-b75f-43e8-b07c-973b43461042/}
+\cvcert{Academy Accreditation - Databricks Lakehouse Fundamentals}{Databricks}{Mar. 2024}{https://credentials.databricks.com/76edeeff-a7ce-4891-813f-fdef277dbb83}
+\cvcert{Detección de objetos}{Coursera}{Oct. 2023}{}
+\cvcert{Ruta Científico de datos}{Platzi}{Jul. 2022-Presente}{}
+\cvcert{Misión TIC 2022}{MINTIC}{Dic. 2021}{}
+\cvcert{Data Science for All (DS4A)}{MINTIC \& Correlation One}{Sept. 2021}{}
 
 \cvsection{Idiomas}
+
 \begin{itemize}
-    \item Español: Nativo
-    \item Inglés: B1-Intermedio
+\item Español: Nativo
+\item Inglés: B1-Intermedio
 \end{itemize}
-
-\cvsection{Experiencia académica}
-
-\cvevent{Caracterización espacio-temporal de flujos turbulentos en el Valle de Aburrá}{Tesis pregrado}{Oct. 2019–Abr. 2020 (7 meses)}{Medellín}
-\begin{itemize}
-    \item Análisis estadístico de los datos recolectados por anemómetros sónicos de alta resolución temporal (20 Hz).
-    \item Aplicación de técnicas de análisis de frecuencia (transformada de Fourier, análisis de componentes principales) en series temporales ambientales.
-    \item Implementación de redes neuronales para el modelado de series temporales de flujos turbulentos.
-\end{itemize}
-
-\cvsection{Áreas de interés}
-
-\cvtag{Machine Learning}
-\cvtag{IA generativa}
-\cvtag{MLOps}\\
-\cvtag{Ciencia de datos}
-\cvtag{Inteligencia Artificial}
-\cvtag{Estadística}
-\cvtag{Modelado matemático}
-% \divider\smallskip
-\cvtag{Analítica}
-\cvtag{Programación}
-\cvtag{Computación en nube}
-\cvtag{Arquitectura tecnológica}
 
 \cvsection{Premios}
 
@@ -290,28 +176,39 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \cvevent{Premio "Michel Hermelin Arbaux", versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
 
+\cvsection{Áreas de interés}
+
+\begin{cvtags}
+\cvtag{Machine Learning}
+\cvtag{IA generativa}
+\cvtag{MLOps}
+\cvtag{Ciencia de datos}
+\cvtag{Inteligencia Artificial}
+\cvtag{Estadística}
+\cvtag{Modelado matemático}
+\cvtag{Analítica}
+\cvtag{Programación}
+\cvtag{Computación en nube}
+\cvtag{Arquitectura tecnológica}
+\end{cvtags}
+
 \cvsection{Referencias}
 
 \textbf{\textcolor{emphasis}{Jorge Moreno}}\\
 \textcolor{accent}{\faEnvelope}\ \textcolor{body}{jhmascus@gmail.com} \\
 \textcolor{accent}{\faPhone}\ \textcolor{body}{3014905757}
 
-\vspace{1em}
+\medskip
 
 \textbf{\textcolor{emphasis}{Camilo Ramírez}}\\
 \textcolor{accent}{\faEnvelope}\ \textcolor{body}{cramirezg.291@tuya.com.co} \\
-\textcolor{accent}{\faPhone}\ \textcolor{body}{3164151048} 
+\textcolor{accent}{\faPhone}\ \textcolor{body}{3164151048}
 
-\vspace{1em}
+\medskip
 
 \textbf{\textcolor{emphasis}{Mauricio Ramírez}}\\
 \textcolor{accent}{\faEnvelope}\ \textcolor{body}{mauricio.ramirez@siata.gov.co} \\
 \textcolor{accent}{\faPhone}\ \textcolor{body}{3014678684}
-
-
-
-
-
 
 \end{paracol}
 
