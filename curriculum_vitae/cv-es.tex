@@ -32,6 +32,9 @@
 % Margen extra al partir líneas, para que el texto no se salga de la columna
 \setlength{\emergencystretch}{2em}
 
+% Nombres de herramientas que nunca deben partirse con guion
+\hyphenation{XGBoost LightGBM Airflow Databricks PySpark MLflow Kubernetes LangChain LangGraph TuyaPy BigQuery}
+
 % Curso o certificación en formato compacto:
 % \cvcert{nombre}{emisor}{fecha}{url del certificado (opcional)}
 \newcommand{\cvcert}[4]{%
@@ -39,6 +42,12 @@
   {\small\textbf{\color{accent}#2}\enspace\textperiodcentered\enspace#3%
     \ifstrequal{#4}{}{}{\enspace\textperiodcentered\enspace\href{#4}{\textcolor{accent}{\faLink}~Certificado}}\par}
   \smallskip
+}
+
+% Grupo de habilidades como palabras clave (legible para ATS):
+% \cvskillgroup{grupo}{herramientas separadas por comas}
+\newcommand{\cvskillgroup}[2]{%
+  {\small\textbf{\color{emphasis}#1:}~#2\par}\smallskip
 }
 
 % Las etiquetas (\cvtag) pasan a la línea siguiente en vez de salirse de la columna
@@ -173,14 +182,13 @@ Soy un profesional en Inteligencia Artificial y Ciencia de Datos apasionado por 
 
 \cvsection{Habilidades tech}
 
-\cvskill{Python}{5}
-\cvskill{SQL}{5}
-\cvskill{Docker}{4}
-\cvskill{Google Cloud Platform}{4}
-\cvskill{Jenkins}{3}
-\cvskill{PySpark}{3}
-\cvskill{RAG}{3}
-\cvskill{Hugging Face}{3}
+\cvskillgroup{Lenguajes}{Python, SQL}
+\cvskillgroup{Machine Learning}{scikit-learn, XGBoost, LightGBM, scoring de riesgo, series temporales}
+\cvskillgroup{Deep Learning}{PyTorch (CNN), Hugging Face}
+\cvskillgroup{IA generativa}{LLMs, RAG, agentes, bases vectoriales, LangChain, LangGraph, MCP}
+\cvskillgroup{Optimización}{Optuna, algoritmos genéticos (búsqueda de hiperparámetros)}
+\cvskillgroup{Datos y MLOps}{PySpark, Databricks, BigQuery, Airflow, MLflow, DVC, Docker, Kubernetes, Jenkins, GitLab}
+\cvskillgroup{Nube}{GCP (Vertex AI, Cloud Run, GKE)}
 
 \cvsection{Cursos}
 
