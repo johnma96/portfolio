@@ -35,7 +35,7 @@
 % Curso o certificación en formato compacto:
 % \cvcert{nombre}{emisor}{fecha}{url del certificado (opcional)}
 \newcommand{\cvcert}[4]{%
-  {\color{emphasis}#1\par}
+  {\color{emphasis}#1\par}\nopagebreak
   {\small\textbf{\color{accent}#2}\enspace\textperiodcentered\enspace#3%
     \ifstrequal{#4}{}{}{\enspace\textperiodcentered\enspace\href{#4}{\textcolor{accent}{\faLink}~Certificado}}\par}
   \smallskip
@@ -50,7 +50,7 @@
 \photoR{2.5cm}{foto}
 \personalinfo{%
   \email{jmmontoyaz13@gmail.com}
-  \phone{3107278305}
+  \printinfo{\faPhone}{+57 310 727 8305}[tel:+573107278305]
   \linkedin{john-m-montoya-z-1a375a15b}
   \homepage{johnmontoya.vercel.app}
 }
@@ -73,7 +73,7 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \cvsection{Experiencia laboral}
 
-\cvevent{\textbf{Especialista en ciencia de datos (11 meses)}}{PROTECCIÓN S.A}{Oct. 2025–presente}{Medellín, Ant}
+\cvevent{\textbf{Especialista en ciencia de datos}}{Protección S.A.}{Oct. 2025 -- presente}{Medellín, Ant}
 
 \begin{itemize}
 \item Desarrollo y despliegue de modelos de ML y sistemas agénticos (IA) para generación de valor en el negocio financiero.
@@ -83,26 +83,27 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \divider
 
-\cvevent{\textbf{Científico de datos con énfasis en IA (8 meses)}}{TUYA S.A }{Feb. 2025–Oct. 2025}{Medellín, Ant}
+\cvevent{\textbf{Científico de datos con énfasis en IA (8 meses)}}{Tuya S.A.}{Feb. 2025 -- Oct. 2025}{Medellín, Ant}
 
 \begin{itemize}
 \item Desarrollo y optimización de pipelines de Machine Learning para automatizar y facilitar la integración de modelos en producción, asegurando la escalabilidad, monitorización y mantenimiento continuo.
-\item Diseño e implementación de soluciones basadas en IA generativa (Ingeniería de prompt, agentes, bases vectoriales, RAG) para procesamiento de llamadas (Speech2Text), extracción de información relevante de textos, resumen, chatbots, agentes para evaluación de LLMs, entre otros.
-\item Apoyo en la implementación de arquitecturas de despliegue eficientes, sostenibles y escalables para modelos de IA Generativa y otros algoritmos de ML.
+\item Diseño e implementación de soluciones basadas en IA generativa (ingeniería de prompts, agentes, bases vectoriales, RAG) para procesamiento de llamadas (Speech2Text), extracción de información relevante de textos, resumen, chatbots, agentes para evaluación de LLMs, entre otros.
+\item Apoyo en la implementación de arquitecturas de despliegue eficientes, sostenibles y escalables para modelos de IA generativa y otros algoritmos de ML.
 \end{itemize}
 
 \divider
 
-\cvevent{\textbf{Científico de datos (16 meses)}}{TUYA S.A (Analítica de riesgos, Riesgo de modelos)}{Oct. 2023–Feb. 2025}{Medellín, Ant}
+\cvevent{\textbf{Científico de datos (16 meses)}}{Tuya S.A. (Analítica de riesgos, Riesgo de modelos)}{Oct. 2023 -- Feb. 2025}{Medellín, Ant}
 
 \begin{itemize}
-\item Liderazgo en metodología MLOps e implementación de buenas prácticas para el desarrollo de modelos de IA utilizando herramientas como MLflow, CI/CD, pyspark, DVC, Databricks, y metodologías ágiles (Scrum).
+\item Liderazgo en metodología MLOps e implementación de buenas prácticas para el desarrollo de modelos de IA utilizando herramientas como MLflow, CI/CD, PySpark, DVC, Databricks, y metodologías ágiles (Scrum).
 \item Liderazgo en el diseño y desarrollo de modelos de Machine Learning para estimar la probabilidad de impago de clientes en productos rotativos y no rotativos.
+\item Diseño, construcción y mantenimiento de la librería TuyaPy en POO para facilitar la distribución y colaboración del equipo de analítica.
 \end{itemize}
 
 \divider
 
-\cvevent{\textbf{Científico de datos (18 meses)}}{COMERCIAL CARD S.A.S. - PTM}{Mar. 2022–Sep 2023 }{Medellín, Ant}
+\cvevent{\textbf{Científico de datos (18 meses)}}{Comercial Card S.A.S. (PTM)}{Mar. 2022 -- Sep. 2023}{Medellín, Ant}
 
 \begin{itemize}
 \item Modelos predictivos para cartera, fraude y series temporales (SAGRILAFT, segmentación de clientes), con apoyo en MLOps sobre Google Cloud.
@@ -112,16 +113,16 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \divider
 
-\cvevent{\textbf{Analista de datos (20 meses)}}{Sistema de Alerta Temprana de Medellín y el Valle de Aburrá - SIATA}{Jul. 2020-Mar. 2022}{Medellín, Ant}
+\cvevent{\textbf{Analista de datos (20 meses)}}{Sistema de Alerta Temprana de Medellín y el Valle de Aburrá (SIATA)}{Jul. 2020 -- Mar. 2022}{Medellín, Ant}
 
 \begin{itemize}
-\item Análisis de información ambiental geoespacial y temporal empleando técnicas reducción y transformación de dimensionalidad para la toma de decisiones en sistemas de alerta temprana y gestión de riesgos.
-\item Desarrollo de paquetes distribuibles en lenguaje python usando POO, enfocados en la lectura y análisis ágil de datos para apoyar la gestión del riesgo y la comprensión de series temporales de alta frecuencia (20 Hz).
+\item Análisis de información ambiental geoespacial y temporal empleando técnicas de reducción y transformación de dimensionalidad para la toma de decisiones en sistemas de alerta temprana y gestión de riesgos.
+\item Desarrollo de paquetes distribuibles en Python usando POO, enfocados en la lectura y análisis ágil de datos para apoyar la gestión del riesgo y la comprensión de series temporales de alta frecuencia (20 Hz).
 \end{itemize}
 
 \cvsection{Experiencia académica}
 
-\cvevent{Caracterización espacio-temporal de flujos turbulentos en el Valle de Aburrá}{Tesis pregrado}{Oct. 2019–Abr. 2020}{Medellín}
+\cvevent{Caracterización espacio-temporal de flujos turbulentos en el Valle de Aburrá}{Tesis de pregrado}{Oct. 2019 -- Abr. 2020}{Medellín}
 
 \begin{itemize}
 \item Análisis estadístico de los datos recolectados por anemómetros sónicos de alta resolución temporal (20 Hz).
@@ -136,9 +137,9 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \cvsection{Estudios}
 
-\cvevent{Maestría en ingeniería - Analítica}{Universidad Nacional de Colombia}{Ago. 2023-Dic. 2025}{Medellín}
-\cvevent{Especialización en analítica}{Universidad Nacional de Colombia}{Ago. 2022-Jul. 2023}{Medellín}
-\cvevent{Ingeniería civil}{Universidad Nacional de Colombia}{Feb. 2015-Nov. 2020}{Medellín}
+\cvevent{Maestría en Ingeniería -- Analítica}{Universidad Nacional de Colombia}{Ago. 2023 -- Dic. 2025}{Medellín}
+\cvevent{Especialización en Analítica}{Universidad Nacional de Colombia}{Ago. 2022 -- Jul. 2023}{Medellín}
+\cvevent{Ingeniería Civil}{Universidad Nacional de Colombia}{Feb. 2015 -- Nov. 2020}{Medellín}
 
 \cvsection{Habilidades tech}
 
@@ -147,21 +148,23 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \cvskill{Docker}{4}
 \cvskill{Google Cloud Platform}{4}
 \cvskill{Jenkins}{3}
-\cvskill{Pyspark}{3}
+\cvskill{PySpark}{3}
 \cvskill{RAG}{3}
-\cvskill{HuggingFace}{3}
+\cvskill{Hugging Face}{3}
 
 \cvsection{Cursos}
 
-\cvcert{Building with the Claude API}{Anthropic}{Jun. 2026}{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}
+\cvcert{Building with the Claude API}{Anthropic}{Jun. 2026}{https://verify.skilljar.com/c/xrmrv9zxqoak}
+\cvcert{Introduction to Model Context Protocol}{Anthropic}{Jun. 2026}{https://verify.skilljar.com/c/iwe5zxym4sko}
+\cvcert{Claude Code in Action}{Anthropic}{Jun. 2026}{https://verify.skilljar.com/c/68uhdj7rhijq}
 \cvcert{Especialización en IA Generativa con Google Cloud}{Datapath}{Abr. 2026}{https://datapath.iacerts.com/verify-certificate/validate/5b47dcf1-4da8-4023-b140-0bf3662b229f}
 \cvcert{Databricks y Apache Spark para Big Data: de cero a experto}{Udemy}{Ago. 2025}{https://www.udemy.com/certificate/UC-5c0f1b8b-543f-4c84-b931-fc4af8443ce0/}
 \cvcert{Bootcamp Avanzado MLOps | Machine Learning Operation Hands-on}{Udemy}{Ago. 2024}{https://www.udemy.com/certificate/UC-0bc813ac-b75f-43e8-b07c-973b43461042/}
 \cvcert{Academy Accreditation - Databricks Lakehouse Fundamentals}{Databricks}{Mar. 2024}{https://credentials.databricks.com/76edeeff-a7ce-4891-813f-fdef277dbb83}
 \cvcert{Detección de objetos}{Coursera}{Oct. 2023}{}
-\cvcert{Ruta Científico de datos}{Platzi}{Jul. 2022-Presente}{}
+\cvcert{Ruta Científico de datos}{Platzi}{Jul. 2022 -- presente}{}
 \cvcert{Misión TIC 2022}{MINTIC}{Dic. 2021}{}
-\cvcert{Data Science for All (DS4A)}{MINTIC \& Correlation One}{Sept. 2021}{}
+\cvcert{Data Science for All (DS4A)}{MINTIC \& Correlation One}{Sep. 2021}{}
 
 \cvsection{Idiomas}
 
@@ -172,9 +175,9 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 
 \cvsection{Premios}
 
-\cvevent{Premio "Mejores Trabajos de Grado Pregrado" - Programa ingeniería civil (Sede Medellin), versión XXX}{Universidad Nacional de Colombia}{Abr. 2021}{Medellín}
+\cvevent{Premio ``Mejores Trabajos de Grado de Pregrado'' -- Programa de Ingeniería Civil (Sede Medellín), versión XXX}{Universidad Nacional de Colombia}{Abr. 2021}{Medellín}
 
-\cvevent{Premio "Michel Hermelin Arbaux", versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
+\cvevent{Premio ``Michel Hermelin Arbaux'', versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
 
 \cvsection{Áreas de interés}
 
