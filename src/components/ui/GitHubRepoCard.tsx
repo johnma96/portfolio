@@ -4,6 +4,7 @@ import { GitFork, Star } from 'lucide-react'
 import { Badge } from './Badge'
 import type { GitHubRepo } from '../../hooks/useGitHubRepos'
 import { useLanguage } from '../../contexts/LanguageContext'
+import { SITE_CONFIG } from '../../data/config'
 
 interface GitHubRepoCardProps {
   repo: GitHubRepo
@@ -25,9 +26,10 @@ function getLanguageVariant(language: string | null): 'blue' | 'yellow' | 'defau
 
 export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
   const [hovered, setHovered] = useState(false)
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   const visibleTopics = repo.topics.slice(0, 4)
+  const description = SITE_CONFIG.github.descriptionOverrides[repo.name]?.[lang] ?? repo.description
 
   return (
     <motion.div
@@ -51,11 +53,11 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
       </div>
 
       <p
-        className={`text-sm mb-3 flex-1 ${
-          repo.description ? 'text-text-secondary' : 'text-text-muted italic'
+        className={`text-sm mb-3 flex-1 whitespace-pre-line ${
+          description ? 'text-text-secondary' : 'text-text-muted italic'
         }`}
       >
-        {repo.description ?? t.projects.noDescription}
+        {description ?? t.projects.noDescription}
       </p>
 
       {visibleTopics.length > 0 && (

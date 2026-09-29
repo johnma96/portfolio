@@ -105,8 +105,9 @@ export function useGitHubRepos(): UseGitHubReposResult {
 }
 
 function applyFilters(data: GitHubRepo[]): GitHubRepo[] {
-  if (!SITE_CONFIG.github.showForks) {
-    return data.filter((repo) => !repo.fork)
-  }
-  return data
+  const excluded = new Set(SITE_CONFIG.github.excludedRepos.map((name) => name.toLowerCase()))
+  return data.filter(
+    (repo) =>
+      !excluded.has(repo.name.toLowerCase()) && (SITE_CONFIG.github.showForks || !repo.fork)
+  )
 }
