@@ -60,15 +60,15 @@
 \AtBeginEnvironment{itemize}{\small}
 
 %% Orden de lectura: página 1 izquierda -> página 1 derecha -> página 2
-%% izquierda -> página 2 derecha. Los saltos de columna (\newpage dentro de
-%% una columna) se ponen siempre entre dos entradas, nunca a mitad de una.
+%% izquierda -> página 2 derecha. Los cortes entre columnas se hacen siempre
+%% entre dos entradas, nunca a mitad de una.
 \columnratio{0.55}
 
+%% ------------------------------------------------------------------
+%% Página 1: perfil y toda la experiencia laboral, repartida en las dos
+%% columnas (la experiencia continúa arriba de la columna derecha).
+%% ------------------------------------------------------------------
 \begin{paracol}{2}
-
-%% ------------------------------------------------------------------
-%% Columna izquierda, página 1: perfil y experiencia reciente
-%% ------------------------------------------------------------------
 
 \cvsection{Perfil profesional}
 
@@ -94,12 +94,7 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \item Apoyo en la implementación de arquitecturas de despliegue eficientes, sostenibles y escalables para modelos de IA generativa y otros algoritmos de ML.
 \end{itemize}
 
-%% ------------------------------------------------------------------
-%% Columna izquierda, página 2: resto de la experiencia y académica
-%% ------------------------------------------------------------------
-\newpage
-
-\cvsection{Experiencia laboral \textnormal{\large(cont.)}}
+\switchcolumn
 
 \cvevent{\textbf{Científico de datos (16 meses)}}{Tuya S.A. (Analítica de riesgos, Riesgo de modelos)}{Oct. 2023 -- Feb. 2025}{Medellín, Ant}
 
@@ -116,7 +111,7 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \begin{itemize}
 \item Modelos predictivos para cartera, fraude y series temporales (SAGRILAFT, segmentación de clientes), con apoyo en MLOps sobre Google Cloud.
 \item Data Warehouse en BigQuery (GCP): diseño de flujos ETL con herramientas como HEVO.
-\item Reportes interactivos en Power BI para KPIs financieros y automatización de cálculos en Python/KNIME sobre Google Compute Engine.
+\item Reportes interactivos en Power BI para KPIs financieros y automatización de cálculos en Python y KNIME sobre Google Compute Engine.
 \end{itemize}
 
 \divider
@@ -128,27 +123,8 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \item Desarrollo de paquetes distribuibles en Python usando POO, enfocados en la lectura y análisis ágil de datos para apoyar la gestión del riesgo y la comprensión de series temporales de alta frecuencia (20 Hz).
 \end{itemize}
 
-\cvsection{Experiencia académica}
-
-\cvevent{Caracterización espacio-temporal de flujos turbulentos en el Valle de Aburrá}{Tesis de pregrado}{Oct. 2019 -- Abr. 2020}{Medellín}
-
-\begin{itemize}
-\item Análisis estadístico de los datos recolectados por anemómetros sónicos de alta resolución temporal (20 Hz).
-\item Aplicación de técnicas de análisis de frecuencia (transformada de Fourier, análisis de componentes principales) en series temporales ambientales.
-\item Implementación de redes neuronales para el modelado de series temporales de flujos turbulentos.
-\end{itemize}
-
-%% ------------------------------------------------------------------
-%% Columna derecha, página 1: formación y habilidades
-%% ------------------------------------------------------------------
-\switchcolumn
-
-\cvsection{Estudios}
-
-\cvevent{Maestría en Ingeniería -- Analítica}{Universidad Nacional de Colombia}{Ago. 2023 -- Dic. 2025}{Medellín}
-\cvevent{Especialización en Analítica}{Universidad Nacional de Colombia}{Ago. 2022 -- Jul. 2023}{Medellín}
-\cvevent{Ingeniería Civil}{Universidad Nacional de Colombia}{Feb. 2015 -- Nov. 2020}{Medellín}
-
+%% Estudios y Habilidades van aquí si caben completos después de la
+%% experiencia; si no, pasan a la página 2.
 \cvsection{Habilidades tech}
 
 \cvskill{Python}{5}
@@ -159,6 +135,40 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \cvskill{PySpark}{3}
 \cvskill{RAG}{3}
 \cvskill{Hugging Face}{3}
+
+\end{paracol}
+
+%% ------------------------------------------------------------------
+%% Página 2: formación a la izquierda; habilidades y complementarios a la
+%% derecha.
+%% ------------------------------------------------------------------
+\clearpage
+
+\begin{paracol}{2}
+
+\cvsection{Estudios}
+
+\cvevent{Maestría en Ingeniería -- Analítica}{Universidad Nacional de Colombia}{Ago. 2023 -- Dic. 2025}{Medellín}
+\cvevent{Especialización en Analítica}{Universidad Nacional de Colombia}{Ago. 2022 -- Jul. 2023}{Medellín}
+\cvevent{Ingeniería Civil}{Universidad Nacional de Colombia}{Feb. 2015 -- Nov. 2020}{Medellín}
+
+\cvsection{Experiencia académica}
+
+\cvevent{Caracterización espacio-temporal de flujos turbulentos en el Valle de Aburrá}{Tesis de pregrado}{Oct. 2019 -- Abr. 2020}{Medellín}
+
+\begin{itemize}
+\item Análisis estadístico de los datos recolectados por anemómetros sónicos de alta resolución temporal (20 Hz).
+\item Aplicación de técnicas de análisis de frecuencia (transformada de Fourier, análisis de componentes principales) en series temporales ambientales.
+\item Implementación de redes neuronales para el modelado de series temporales de flujos turbulentos.
+\end{itemize}
+
+\cvsection{Premios}
+
+\cvevent{Premio ``Mejores Trabajos de Grado de Pregrado'' -- Programa de Ingeniería Civil (Sede Medellín), versión XXX}{Universidad Nacional de Colombia}{Abr. 2021}{Medellín}
+
+\cvevent{Premio ``Michel Hermelin Arbaux'', versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
+
+\switchcolumn
 
 \cvsection{Cursos}
 
@@ -183,17 +193,6 @@ Soy un profesional en Inteligencia artificial y Ciencia de Datos apasionado por 
 \item Español: Nativo
 \item Inglés: B1-Intermedio
 \end{itemize}
-
-%% ------------------------------------------------------------------
-%% Columna derecha, página 2: complementarios
-%% ------------------------------------------------------------------
-\newpage
-
-\cvsection{Premios}
-
-\cvevent{Premio ``Mejores Trabajos de Grado de Pregrado'' -- Programa de Ingeniería Civil (Sede Medellín), versión XXX}{Universidad Nacional de Colombia}{Abr. 2021}{Medellín}
-
-\cvevent{Premio ``Michel Hermelin Arbaux'', versión 2021}{Academia Colombiana de Ciencias Exactas, Físicas y Naturales}{Nov. 2021}{Medellín}
 
 \cvsection{Áreas de interés}
 
