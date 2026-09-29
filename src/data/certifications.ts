@@ -87,7 +87,7 @@ export const CERTIFICATIONS: Certification[] = [
     nameEn: 'DS4A / Colombia 5.0',
     issuer: 'Correlation One',
     date: '2021-09-01',
-    credentialUrl: 'https://www.credential.net/dc7a9c1c-0fb7-45f1-a816-e631dba912dd',
+    credentialUrl: 'https://www.credential.net/dc7a9c1c-0fb7-45f1-a816-e631dba912dd#acc.Moh6Hgd7',
     color: '#38bdf8',
     skills: ['Machine Learning', 'SQL', 'Python', 'Data Analysis', 'Statistics'],
   },
