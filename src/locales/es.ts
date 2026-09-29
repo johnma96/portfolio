@@ -14,13 +14,12 @@ export const es: Translations = {
     badge: 'Disponible para proyectos freelance',
     subtitle: 'Especialista en sistemas ML e IA Generativa · Medellín, Colombia',
     description:
-      'Construyo sistemas ML y soluciones de IA Generativa production-ready: desde pipelines de datos hasta agentes con RAG. Especializado en GCP, AWS, Vertex AI y LLMs aplicados a problemas reales de negocio.',
+      'Construyo sistemas ML y soluciones de IA Generativa production-ready: desde pipelines de datos hasta agentes con RAG. Especializado en GCP, Vertex AI y LLMs aplicados a problemas reales de negocio.',
     viewProjects: 'Ver proyectos →',
     downloadCV: 'Descargar CV',
     stats: [
-      { value: '5+', label: 'Años de experiencia' },
-      { value: '10+', label: 'Proyectos en producción' },
-      { value: '3', label: 'Plataformas cloud' },
+      { value: '6+', label: 'Años de experiencia' },
+      { value: 'GCP', label: 'Plataforma cloud' },
     ],
   },
   projects: {
@@ -73,7 +72,7 @@ export const es: Translations = {
     heading: 'Sobre mí',
     greeting: 'Hola, soy Mario — y quiero contarte cómo un Ingeniero Civil terminó construyendo sistemas de IA en producción.',
     bio1: 'Ese camino me enseñó que la ingeniería es la misma sin importar el dominio: entender el problema, modelarlo y construir algo que funcione en el mundo real. No llegué a los datos por moda — llegué porque vi que los datos eran la nueva infraestructura.',
-    bio2: 'Hoy llevo más de 5 años en la intersección entre ciencia de datos, MLOps e IA Generativa. Me apasiona llevar modelos desde un notebook hasta producción: construir los pipelines, la infraestructura y los sistemas que los hacen funcionar a escala y generar valor real.',
+    bio2: 'Hoy llevo más de 6 años en la intersección entre ciencia de datos, MLOps e IA Generativa. Me apasiona llevar modelos desde un notebook hasta producción: construir los pipelines, la infraestructura y los sistemas que los hacen funcionar a escala y generar valor real.',
     educationHeading: 'Formación académica',
   },
   experience: {
