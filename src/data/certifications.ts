@@ -56,7 +56,7 @@ export const CERTIFICATIONS: Certification[] = [
     name: 'AWS Cloud Quest: Cloud Practitioner',
     nameEn: 'AWS Cloud Quest: Cloud Practitioner',
     issuer: 'Amazon Web Services',
-    date: '2026-01-01',
+    date: '2026-01-16',
     credentialUrl: 'https://www.credly.com/badges/27db2d32-98c1-4027-b09c-601e43b754e8',
     color: '#FF9900',
     skills: ['EC2', 'S3', 'IAM', 'Cloud Architecture', 'AWS Services'],
