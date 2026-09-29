@@ -27,6 +27,12 @@
 - Si MiKTeX falla con `Font Lato-Regular-T1-TLF--base at 720 not found`: correr `initexmf --update-fndb` e `initexmf --mkmaps`, y recompilar forzando con `latexmk -g ...`.
 - Después de cada cambio: compilar sin errores, revisar warnings nuevos (overfull hbox, pdfx, fuentes), confirmar que son máximo 2 páginas y revisar el PDF visualmente.
 
+### Estructura y orden de lectura
+- Página 1 a ancho completo: perfil y experiencia laboral, en orden cronológico inverso.
+- Página 2 en dos columnas (`paracol`): a la izquierda Estudios, Experiencia académica y Premios; a la derecha Habilidades, Cursos, Idiomas, Áreas de interés y Referencias.
+- El lector recorre página 1, luego columna izquierda y después columna derecha de la página 2. Ninguna entrada (cargo, estudio, curso) puede quedar partida entre columnas o páginas, y ningún título de sección puede quedar solo al final de una columna.
+- La página 1 está casi llena: si la experiencia crece, compensar acortando el perfil o las viñetas. Si se desborda a la página 2, el `\clearpage` empuja las columnas a una tercera página.
+
 ### Estilo
 - Fechas en español con formato `Mmm. AAAA` (Ene., Feb., Mar., Abr., May., Jun., Jul., Ago., Sep., Oct., Nov., Dic.); rangos con `--`; el cargo actual termina en `presente`.
 - Duraciones solo en cargos cerrados; nunca en el cargo actual.
