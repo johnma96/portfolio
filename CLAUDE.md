@@ -28,10 +28,11 @@
 - Después de cada cambio: compilar sin errores, revisar warnings nuevos (overfull hbox, pdfx, fuentes), confirmar que son máximo 2 páginas y revisar el PDF visualmente.
 
 ### Estructura y orden de lectura
-- Página 1 a ancho completo: perfil y experiencia laboral, en orden cronológico inverso.
-- Página 2 en dos columnas (`paracol`): a la izquierda Estudios, Experiencia académica y Premios; a la derecha Habilidades, Cursos, Idiomas, Áreas de interés y Referencias.
-- El lector recorre página 1, luego columna izquierda y después columna derecha de la página 2. Ninguna entrada (cargo, estudio, curso) puede quedar partida entre columnas o páginas, y ningún título de sección puede quedar solo al final de una columna.
-- La página 1 está casi llena: si la experiencia crece, compensar acortando el perfil o las viñetas. Si se desborda a la página 2, el `\clearpage` empuja las columnas a una tercera página.
+- Ambas páginas en dos columnas (`paracol`, izquierda 55 %). El lector recorre página 1 izquierda → página 1 derecha → página 2 izquierda → página 2 derecha.
+- Columna izquierda: perfil y experiencia laboral en orden cronológico inverso; en la página 2 continúa bajo el título "Experiencia laboral (cont.)", seguida de Experiencia académica.
+- Columna derecha: página 1 con Estudios, Habilidades, Cursos e Idiomas; página 2 con Premios, Áreas de interés y Referencias.
+- Los saltos se fuerzan con `\newpage` dentro de cada columna, siempre entre dos entradas. Ninguna entrada (cargo, estudio, curso) puede quedar partida entre columnas o páginas, y ningún título de sección puede quedar solo al final de una columna.
+- Al cambiar contenido, revisar si el salto de la columna izquierda sigue en el mejor punto (sin huecos grandes ni desbordes a una tercera página).
 
 ### Estilo
 - Fechas en español con formato `Mmm. AAAA` (Ene., Feb., Mar., Abr., May., Jun., Jul., Ago., Sep., Oct., Nov., Dic.); rangos con `--`; el cargo actual termina en `presente`.
