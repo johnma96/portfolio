@@ -17,6 +17,12 @@
 - No ejecutar comandos destructivos (rm -rf, git reset --hard) sin confirmación explícita
 - No hacer push a ningún remote sin pedirlo explícitamente
 
+## Ramas
+- Solo existen `main` y `develop`, en local y en el remoto. No crear ramas `feature/*`, `release/*` ni otras.
+- Todo el trabajo se hace y se commitea en `develop`. Llega a `main` mediante pull request de `develop` → `main`.
+- `main` es lo que Vercel publica: nunca commitear directamente en `main`.
+- Después de fusionar un PR, actualizar `develop` con `main` (fast-forward) antes de seguir trabajando.
+
 ## Hoja de vida (LaTeX)
 
 ### Ubicación y compilación
